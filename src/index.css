@@ -1,13 +1,168 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+/* Variables */
+:root {
+  --primary-color: #0056b3;
+  --secondary-color: #6c757d;
+  --background-color: #f8f9fa;
+  --text-color: #343a40;
+  --accent-color: #ffc107;
+  --font-family: 'Poppins', sans-serif;
+  --font-size-base: 16px;
+  --transition-speed: 0.4s;
+  --bs-progress-width: 75%;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* Global Styles */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body,
+html {
+  font-family: var(--font-family);
+  padding-top: 50px;
+  margin: 0;
+  background-color: #eeeeee;
+  color: #333;
+  line-height: 1.6;
+  scroll-behavior: smooth;
+}
+
+/* Headings */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--primary-color);
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 0.5em;
+}
+
+/* Paragraphs */
+p {
+  color: #666;
+  font-size: 1.1em;
+  margin-bottom: 1em;
+}
+
+/* Section Spacing */
+section {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+/* Global Card Styles */
+.card {
+  transition: transform 0.3s ease-in-out, box-shadow 0.5s ease-in-out; /* Increase duration and use ease-in-out */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Initial shadow */
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* Card hover effect */
+.card:hover {
+  transform: translateY(-10px) scale(1.03); /* Slight lift and scale effect */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Deeper shadow on hover */
+}
+
+
+/* Additional customizations (optional) */
+.card-body {
+  padding: 20px;
+}
+
+.card-title {
+  font-size: 1.5rem;
+  color: var(--primary-color);
+}
+
+.card-text {
+  font-size: 1rem;
+  color: #333;
+}
+
+
+/* Media Queries */
+@media (max-width: 992px) {
+  .navbar {
+    background-color: #fff;
+  }
+
+  .navbar-collapse {
+    text-align: center;
+  }
+
+  .nav-item {
+    display: block;
+    margin-bottom: 10px;
+  }
+  .nav-link {
+    font-size: 1.2em;
+  }
+}
+
+@media (max-width: 576px) {
+  body,
+  html {
+    padding-top: 60px;
+  }
+
+  .navbar {
+    padding: 0.8rem 1rem;
+  }
+
+  .navbar-brand img {
+    height: 30px;
+  }
+
+  .navbar-nav {
+    flex-direction: column;
+  }
+
+  .nav-link {
+    margin: 5px 0;
+  }
+
+  .profile-img {
+    width: 120px;
+  }
+
+  .list-group-item {
+    padding: 10px;
+  }
+
+  .list-group-item h5 {
+    font-size: 1rem;
+  }
+
+  .list-group-item strong {
+    font-size: 0.9rem;
+  }
+
+  .list-group-item small {
+    font-size: 0.8rem;
+  }
+
+  .card-img-top {
+    height: 150px;
+  }
+
+  #education h1 {
+    font-size: 1.5rem;
+  }
+
+  .edu-logo {
+    width: 70px;
+  }
+
+  #contact li {
+    font-size: 1rem;
+  }
 }
