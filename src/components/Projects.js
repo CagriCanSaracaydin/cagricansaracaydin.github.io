@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Container, Row, Col, Card, Badge, Button, Modal } from 'react-bootstrap';
 import project1Img from '../images/project1.png';
 import project2Img from '../images/project2.png';
 import project3Img from '../images/project3.png';
@@ -35,67 +36,159 @@ const projects = [
     title: 'Data Analysis of Commodity Market',
     image: project4Img,
     description:
-      'This project focuses on the commodity market, analyzing trends from 2019 to 2024 across key commodities including natural gas, crude oil, precious metals, and cryptocurrencies. Using data cleaning, exploratory analysis, and machine learning models like KNN and Decision Trees, it aims to predict future price movements. Techniques include statistical hypothesis testing and feature importance analysis, leveraging tools like Pandas, Scikit-learn, and Matplotlib.',
-    badges: ['Data Analysis', 'Machine Learning', 'Python'],
+      'Analyzed commodity market trends from 2019 to 2024 across key commodities including natural gas, crude oil, precious metals, and cryptocurrencies. Utilized data cleaning, exploratory analysis, and machine learning models like KNN and Decision Trees to predict future price movements.',
+    badges: ['Python', 'Data Analysis', 'Machine Learning'],
     link: 'https://github.com/CagriCanSaracaydin/Data-Analysis-of-Commodity-Market',
   },
   {
     title: 'SongSpot Backend API',
     image: project5Img,
     description:
-      'SongSpot, dubbed the "IMDB for music," leverages this backend API to power its music discovery platform. This robust API facilitates song searches, comments, and ratings, enhancing user interactions across a detailed music database.',
-    badges: ['Backend', 'Java', 'Spring', 'MongoDB'],
+      'Developed a robust backend API for SongSpot, facilitating song searches, comments, and ratings to enhance user interactions across a detailed music database.',
+    badges: ['Java', 'Backend', 'Spring', 'MongoDB'],
     link: 'https://github.com/CagriCanSaracaydin/SongSpot-Backend',
   },
   {
     title: 'SongSpot Frontend Android',
     image: project6Img,
     description:
-      'The SongSpot app offers a user-friendly mobile interface for exploring and interacting with a vast music database. Its frontend, built with Java and Android SDK, enables users to navigate through different music genres, view detailed song information, and interact with features like rating and commenting on songs.',
-    badges: ['Frontend', 'Android', 'Java', 'UI'],
+      'Built the SongSpot app’s frontend with Java and Android SDK, offering a user-friendly mobile interface for exploring and interacting with a vast music database.',
+    badges: ['Java', 'Frontend', 'Android', 'UI'],
     link: 'https://github.com/CagriCanSaracaydin/SongSpot-Frontend',
   },
 ];
 
-function Projects() {
-  return (
-    <section id="projects" className="container mt-5 py-5">
-      <h2 className="section-heading text-center mb-5">Projects</h2>
-      <div className="row g-4">
-        {projects.map((project, index) => (
-          <div className="col-lg-4 mb-4" key={index}>
-            <div className="card h-100 shadow-lg hover-lift">
-              <img
-                src={project.image}
-                loading="lazy"
-                className="card-img-top"
-                alt={`${project.title} Image`}
-              />
-              <div className="card-body d-flex flex-column">
-                <h5 className="card-title fw-bold mb-3">{project.title}</h5>
-                <p className="card-text flex-grow-1">{project.description}</p>
-                <div className="mb-3">
-                  {project.badges.map((badge, idx) => (
-                    <span className="badge bg-primary me-2" key={idx}>
-                      {badge}
-                    </span>
-                  ))}
-                </div>
-                <div className="card-footer bg-transparent border-0 text-center">
-                  <a
-                    href={project.link}
-                    className="btn btn-outline-primary btn-sm mt-auto"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    View Details
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
+const ProjectCard = ({ project, onClick }) => (
+  <Card className="h-100 shadow-lg project-card" onClick={() => onClick(project)}>
+    <Card.Img
+      variant="top"
+      src={project.image}
+      alt={`${project.title} Image`}
+      style={{ objectFit: 'cover', height: '200px' }}
+      loading="lazy"
+    />
+    <Card.Body className="d-flex flex-column">
+      <Card.Title className="fw-bold">{project.title}</Card.Title>
+      <Card.Text className="flex-grow-1">{project.description}</Card.Text>
+      <div className="mt-3">
+        {project.badges.map((badge, idx) => (
+          <Badge bg="primary" className="me-2 mb-2" key={idx}>
+            {badge}
+          </Badge>
         ))}
       </div>
+    </Card.Body>
+  </Card>
+);
+
+function Projects() {
+  const [selectedProject, setSelectedProject] = useState(null);
+  const [filter, setFilter] = useState('All');
+
+  const handleClose = () => setSelectedProject(null);
+  const handleShow = (project) => setSelectedProject(project);
+
+  const filteredProjects = filter === 'All' 
+    ? projects 
+    : projects.filter(project => project.badges.includes(filter));
+
+  const filterOptions = ['All', 'Python', 'C++', 'Java', 'Verilog HDL'];
+
+  return (
+    <section id="projects" className="mt-5 py-5" data-aos="fade-up">
+      <Container>
+        <h2 className="section-heading text-center mb-5">Projects</h2>
+        <div className="text-center mb-4">
+          {filterOptions.map(option => (
+            <Button
+              key={option}
+              variant={filter === option ? 'primary' : 'outline-primary'}
+              className="me-2 mb-2"
+              onClick={() => setFilter(option)}
+            >
+              {option}
+            </Button>
+          ))}
+        </div>
+        <Row xs={1} md={2} lg={3} className="g-4">
+          {filteredProjects.map((project, index) => (
+            <Col key={index} data-aos="fade-up">
+              <ProjectCard project={project} onClick={handleShow} />
+            </Col>
+          ))}
+        </Row>
+      </Container>
+
+      <Modal show={selectedProject !== null} onHide={handleClose} size="lg" centered>
+        {selectedProject && (
+          <>
+            <Modal.Header closeButton>
+              <Modal.Title>{selectedProject.title}</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <div className="d-flex flex-column flex-md-row align-items-center mb-4">
+                <div className="project-image-container me-md-4 mb-3 mb-md-0">
+                  <img
+                    src={selectedProject.image}
+                    alt={selectedProject.title}
+                    className="project-image"
+                  />
+                </div>
+                <div className="project-details">
+                  <p>{selectedProject.description}</p>
+                  <h5 className="mt-3">Technologies Used:</h5>
+                  <div>
+                    {selectedProject.badges.map((badge, idx) => (
+                      <Badge bg="primary" className="me-2 mb-2" key={idx}>
+                        {badge}
+                      </Badge>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={handleClose}>
+                Close
+              </Button>
+              <Button variant="primary" href={selectedProject.link} target="_blank">
+                View Project
+              </Button>
+            </Modal.Footer>
+          </>
+        )}
+      </Modal>
+
+      <style jsx>{`
+        .project-card {
+          transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+          cursor: pointer;
+        }
+        .project-card:hover {
+          transform: translateY(-10px);
+          box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        .project-image-container {
+          width: 200px;
+          height: 200px;
+          overflow: hidden;
+          border-radius: 10px;
+        }
+        .project-image {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+        .project-details {
+          flex: 1;
+        }
+        @media (max-width: 768px) {
+          .project-image-container {
+            width: 100%;
+            height: 200px;
+          }
+        }
+      `}</style>
     </section>
   );
 }

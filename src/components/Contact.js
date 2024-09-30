@@ -21,13 +21,6 @@ function Contact() {
                 cagrisaracaydin@gmail.com
               </a>
             </li>
-            <li>
-              <i className="fas fa-phone me-2 text-primary"></i>
-              <strong>Phone:</strong>{' '}
-              <a href="tel:+905512181613" className="text-decoration-none">
-                +90 551-218-1613
-              </a>
-            </li>
           </ul>
         </div>
       </div>

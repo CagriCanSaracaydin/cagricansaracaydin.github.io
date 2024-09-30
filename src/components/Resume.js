@@ -1,9 +1,10 @@
 import React from 'react';
 import { FaFilePdf } from 'react-icons/fa';
+import resumeLink from '../files/Cagri_Can_Saracaydin_ENG.pdf';
 
 function Resume() {
   return (
-    <section id="resume" className="container py-5 bg-light">
+    <section id="resume" className="container py-5">
       <h1 className="section-heading text-center mb-4">Resume</h1>
       <div className="row justify-content-center">
         <div className="col-md-8 text-center">
@@ -12,7 +13,7 @@ function Resume() {
             qualifications and experience:
           </p>
           <a
-            href="./files/Cagri_Can_Saracaydin_ENG.pdf"
+            href={resumeLink}
             target="_blank"
             rel="noopener noreferrer"
             className="btn btn-primary btn-lg"
