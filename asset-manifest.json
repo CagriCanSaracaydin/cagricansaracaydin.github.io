@@ -1,29 +1,29 @@
 {
   "files": {
-    "main.css": "/react-my-portfolio/static/css/main.85d77b37.css",
-    "main.js": "/react-my-portfolio/static/js/main.90ef8c06.js",
-    "static/media/hero.jpeg": "/react-my-portfolio/static/media/hero.68367e8b594adc77abbc.jpeg",
-    "static/media/harvard.png": "/react-my-portfolio/static/media/harvard.e4b259bd8797ee5a1aab.png",
-    "static/media/BAT-Turkiye-Liderlik-Okulu_BAT-Turkiye-Liderlik-Okulu_Cagri-Can-Saracaydin.pdf": "/react-my-portfolio/static/media/BAT-Turkiye-Liderlik-Okulu_BAT-Turkiye-Liderlik-Okulu_Cagri-Can-Saracaydin.34e454dd422572c50b5c.pdf",
-    "static/media/Cagri_Can_Saracaydin_ENG.pdf": "/react-my-portfolio/static/media/Cagri_Can_Saracaydin_ENG.42c14e2334becdc77bbb.pdf",
-    "static/media/project4.png": "/react-my-portfolio/static/media/project4.ec58f8c778f2fe869ee0.png",
-    "static/media/project2.png": "/react-my-portfolio/static/media/project2.4e5d21610e4f8dd743d7.png",
-    "static/media/project6.png": "/react-my-portfolio/static/media/project6.400810fa73484a23d334.png",
-    "static/media/CagriCanSaracaydin-CertificateOfAchievement.pdf": "/react-my-portfolio/static/media/CagriCanSaracaydin-CertificateOfAchievement.7bfc7daa0195a9fe4e6a.pdf",
-    "static/media/CagriCanSaracaydin-CS50Certificate.pdf": "/react-my-portfolio/static/media/CagriCanSaracaydin-CS50Certificate.83d80d94cd55d8891751.pdf",
-    "static/media/project1.png": "/react-my-portfolio/static/media/project1.ca83eb0bda71ffc57870.png",
-    "static/media/project5.png": "/react-my-portfolio/static/media/project5.57a7821c83de517774ce.png",
-    "static/media/project3.png": "/react-my-portfolio/static/media/project3.2ae3a7d1405dd18e0e67.png",
-    "static/media/Bornova_Anadolu_Lisesi_Logo.png": "/react-my-portfolio/static/media/Bornova_Anadolu_Lisesi_Logo.268e7c42f81f6af354cc.png",
-    "static/media/ibtech-logo.png": "/react-my-portfolio/static/media/ibtech-logo.b780f2302dd7601b8040.png",
-    "static/media/Sabanci_University_logo.png": "/react-my-portfolio/static/media/Sabanci_University_logo.966a7c5e5da5936f2461.png",
-    "static/media/bosch-logo.png": "/react-my-portfolio/static/media/bosch-logo.fb3fa1b6ebb4f07ed27e.png",
-    "index.html": "/react-my-portfolio/index.html",
-    "main.85d77b37.css.map": "/react-my-portfolio/static/css/main.85d77b37.css.map",
-    "main.90ef8c06.js.map": "/react-my-portfolio/static/js/main.90ef8c06.js.map"
+    "main.css": "/static/css/main.85d77b37.css",
+    "main.js": "/static/js/main.166d9673.js",
+    "static/media/hero.jpeg": "/static/media/hero.68367e8b594adc77abbc.jpeg",
+    "static/media/harvard.png": "/static/media/harvard.e4b259bd8797ee5a1aab.png",
+    "static/media/BAT-Turkiye-Liderlik-Okulu_BAT-Turkiye-Liderlik-Okulu_Cagri-Can-Saracaydin.pdf": "/static/media/BAT-Turkiye-Liderlik-Okulu_BAT-Turkiye-Liderlik-Okulu_Cagri-Can-Saracaydin.34e454dd422572c50b5c.pdf",
+    "static/media/Cagri_Can_Saracaydin_ENG.pdf": "/static/media/Cagri_Can_Saracaydin_ENG.42c14e2334becdc77bbb.pdf",
+    "static/media/project4.png": "/static/media/project4.ec58f8c778f2fe869ee0.png",
+    "static/media/project2.png": "/static/media/project2.4e5d21610e4f8dd743d7.png",
+    "static/media/project6.png": "/static/media/project6.400810fa73484a23d334.png",
+    "static/media/CagriCanSaracaydin-CertificateOfAchievement.pdf": "/static/media/CagriCanSaracaydin-CertificateOfAchievement.7bfc7daa0195a9fe4e6a.pdf",
+    "static/media/CagriCanSaracaydin-CS50Certificate.pdf": "/static/media/CagriCanSaracaydin-CS50Certificate.83d80d94cd55d8891751.pdf",
+    "static/media/project1.png": "/static/media/project1.ca83eb0bda71ffc57870.png",
+    "static/media/project5.png": "/static/media/project5.57a7821c83de517774ce.png",
+    "static/media/project3.png": "/static/media/project3.2ae3a7d1405dd18e0e67.png",
+    "static/media/Bornova_Anadolu_Lisesi_Logo.png": "/static/media/Bornova_Anadolu_Lisesi_Logo.268e7c42f81f6af354cc.png",
+    "static/media/ibtech-logo.png": "/static/media/ibtech-logo.b780f2302dd7601b8040.png",
+    "static/media/Sabanci_University_logo.png": "/static/media/Sabanci_University_logo.966a7c5e5da5936f2461.png",
+    "static/media/bosch-logo.png": "/static/media/bosch-logo.fb3fa1b6ebb4f07ed27e.png",
+    "index.html": "/index.html",
+    "main.85d77b37.css.map": "/static/css/main.85d77b37.css.map",
+    "main.166d9673.js.map": "/static/js/main.166d9673.js.map"
   },
   "entrypoints": [
     "static/css/main.85d77b37.css",
-    "static/js/main.90ef8c06.js"
+    "static/js/main.166d9673.js"
   ]
 }
