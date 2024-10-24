@@ -3,6 +3,7 @@ import { Container, Row, Col, Card } from 'react-bootstrap';
 import boschImage from '../images/bosch-logo.png';
 import IBTechImage from '../images/ibtech-logo.png';
 
+// Array of experience data
 const experiences = [
   {
     year: '2025',
@@ -26,6 +27,7 @@ const experiences = [
   },
 ];
 
+// Experience component
 const Experience = () => {
   const [activeExperience, setActiveExperience] = useState(experiences[0]);
 

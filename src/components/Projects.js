@@ -7,6 +7,7 @@ import project4Img from '../images/project4.png';
 import project5Img from '../images/project5.png';
 import project6Img from '../images/project6.png';
 
+// Array of project data
 const projects = [
   {
     title: 'Search Engine C++ Project (CS300)',
@@ -58,6 +59,7 @@ const projects = [
   },
 ];
 
+// ProjectCard component to display individual project cards
 const ProjectCard = ({ project, onClick }) => (
   <Card className="h-100 shadow-lg project-card" onClick={() => onClick(project)}>
     <Card.Img
@@ -81,6 +83,7 @@ const ProjectCard = ({ project, onClick }) => (
   </Card>
 );
 
+// Projects component to display the projects section
 function Projects() {
   const [selectedProject, setSelectedProject] = useState(null);
   const [filter, setFilter] = useState('All');

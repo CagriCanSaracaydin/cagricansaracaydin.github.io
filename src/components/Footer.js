@@ -1,5 +1,6 @@
 import React from 'react';
 
+// Footer component to display the footer section of the website
 function Footer() {
   return (
     <footer className="text-center py-3">

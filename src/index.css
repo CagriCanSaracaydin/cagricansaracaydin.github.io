@@ -72,7 +72,6 @@ section {
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Deeper shadow on hover */
 }
 
-
 /* Additional customizations (optional) */
 .card-body {
   padding: 20px;
@@ -87,7 +86,6 @@ section {
   font-size: 1rem;
   color: #333;
 }
-
 
 /* Media Queries */
 @media (max-width: 992px) {
@@ -166,3 +164,10 @@ section {
     font-size: 1rem;
   }
 }
+
+/* P2306 */
+/* The .scroll-to-top class styles the button that appears when the user scrolls down the page. It is fixed at the bottom right corner of the screen, with a blue background, white text, and a circular shape. The button has a shadow and a smooth transition effect for opacity and visibility changes. */
+
+/* The .scroll-to-top:hover class changes the background color of the button to a darker blue when the user hovers over it. */
+
+/* The .scroll-to-top:focus class removes the default outline when the button is focused. */

@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { Card, Row, Col, ProgressBar, Badge } from 'react-bootstrap';
 
+// Skills component to display the skills section
 const Skills = () => {
   const [hoveredSkill, setHoveredSkill] = useState(null);
 
+  // Skill categories and their respective skills
   const skillCategories = [
     {
       name: 'Programming Languages',
@@ -29,6 +31,7 @@ const Skills = () => {
     }
   ];
 
+  // Function to render skill bars
   const renderSkillBar = (skill) => (
     <div 
       className="skill-bar mb-3" 
