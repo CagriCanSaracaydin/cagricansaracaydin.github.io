@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-scroll';
 import { Navbar, Nav, Container } from 'react-bootstrap';
 
+// NavigationBar component to display the navigation bar
 const NavigationBar = () => {
   const [activeSection, setActiveSection] = useState('');
   const [scrolled, setScrolled] = useState(false);
 
+  // Sections to be displayed in the navigation bar
   const sections = [
     'About',
     'Skills',

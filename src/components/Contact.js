@@ -1,5 +1,6 @@
 import React from 'react';
 
+// Contact component
 function Contact() {
   return (
     <section id="contact" className="container py-5">

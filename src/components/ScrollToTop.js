@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { FaArrowUp } from 'react-icons/fa';
 import './ScrollToTop.css';
 
+// ScrollToTop component to display a button that scrolls the page to the top
 const ScrollToTop = () => {
   const [showButton, setShowButton] = useState(false);
 

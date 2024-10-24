@@ -12,6 +12,10 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
 
+/**
+ * The main App component that sets up the routing and renders the different sections of the website.
+ * It includes the Navbar, About, Skills, Experience, Projects, Education, Certificates, Resume, Contact, Footer, and ScrollToTop components.
+ */
 function App() {
   return (
     <Router>

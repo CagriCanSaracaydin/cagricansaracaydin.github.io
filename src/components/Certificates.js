@@ -7,7 +7,7 @@ import batLink from '../files/BAT-Turkiye-Liderlik-Okulu_BAT-Turkiye-Liderlik-Ok
 import harvardLink from '../files/CagriCanSaracaydin-CS50Certificate.pdf';
 import sabanciLink from '../files/CagriCanSaracaydin-CertificateOfAchievement.pdf';
 
-
+// Array of certificate data
 const certificates = [
   {
     title: 'BAT Turkey Leadership',
@@ -32,6 +32,7 @@ const certificates = [
   },
 ];
 
+// Certificates component
 function Certificates() {
   return (
     <section id="certificates" className="container py-5">

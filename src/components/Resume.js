@@ -2,6 +2,7 @@ import React from 'react';
 import { FaFilePdf } from 'react-icons/fa';
 import resumeLink from '../files/Cagri_Can_Saracaydin_ENG.pdf';
 
+// Resume component to display the resume section
 function Resume() {
   return (
     <section id="resume" className="container py-5">
