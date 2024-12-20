@@ -3,6 +3,7 @@ import { Card, Container, Row, Col } from 'react-bootstrap';
 import sabanciLogo from '../images/Sabanci_University_logo.png';
 import bornovaLogo from '../images/Bornova_Anadolu_Lisesi_Logo.png';
 
+// Education data array containing information about each educational institution
 const educationData = [
   {
     institution: 'Sabanci University',
@@ -26,6 +27,7 @@ const educationData = [
   },
 ];
 
+// Education component to display educational background
 function Education() {
   return (
     <section id="education" className="py-5">

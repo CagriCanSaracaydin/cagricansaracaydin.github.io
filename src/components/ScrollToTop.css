@@ -26,3 +26,8 @@
     outline: none;
   }
   
+/* The .scroll-to-top class styles the button that appears when the user scrolls down the page. It is fixed at the bottom right corner of the screen, with a blue background, white text, and a circular shape. The button has a shadow and a smooth transition effect for opacity and visibility changes. */
+
+/* The .scroll-to-top:hover class changes the background color of the button to a darker blue when the user hovers over it. */
+
+/* The .scroll-to-top:focus class removes the default outline when the button is focused. */
