@@ -32,6 +32,69 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Dark Mode Styles */
+body.dark-mode {
+  --primary-color: #61dafb;
+  --secondary-color: #adb5bd;
+  --background-color: #282c34;
+  --text-color: #ffffff;
+  --accent-color: #ffb700;
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode h4,
+body.dark-mode h5,
+body.dark-mode h6 {
+  color: var(--primary-color);
+}
+
+body.dark-mode p {
+  color: var(--text-color);
+}
+
+body.dark-mode .card {
+  background-color: #3a3f47;
+  color: var(--text-color);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .navbar {
+  background-color: #3a3f47;
+}
+
+body.dark-mode .nav-link {
+  color: var(--text-color);
+}
+
+body.dark-mode .nav-link.active {
+  background-color: var(--primary-color);
+  color: var(--background-color);
+}
+
+body.dark-mode .btn-primary {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+body.dark-mode .btn-primary:hover {
+  background-color: #4a90e2;
+  border-color: #4a90e2;
+}
+
+body.dark-mode .btn-outline-primary {
+  color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+body.dark-mode .btn-outline-primary:hover {
+  background-color: var(--primary-color);
+  color: var(--background-color);
+}
+
 /* Headings */
 h1,
 h2,

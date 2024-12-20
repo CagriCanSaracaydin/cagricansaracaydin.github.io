@@ -1,4 +1,5 @@
 import React from 'react';
+import DarkModeToggle from './DarkModeToggle';
 
 // Footer component to display the footer section of the website
 function Footer() {
@@ -26,6 +27,7 @@ function Footer() {
                 GitHub
               </a>
             </p>
+            <DarkModeToggle />
           </div>
         </div>
       </div>

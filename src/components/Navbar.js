@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-scroll';
 import { Navbar, Nav, Container } from 'react-bootstrap';
+import DarkModeToggle from './DarkModeToggle';
 
 // NavigationBar component to display the navigation bar
 const NavigationBar = () => {
@@ -85,6 +86,7 @@ const NavigationBar = () => {
               </Nav.Item>
             ))}
           </Nav>
+          <DarkModeToggle />
         </Navbar.Collapse>
       </Container>
       <style jsx>{`

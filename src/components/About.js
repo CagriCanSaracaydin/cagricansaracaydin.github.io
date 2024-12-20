@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-scroll';
 import profileImg from '../images/hero.jpeg';
 import { FaLinkedin, FaGithub, FaEnvelope } from 'react-icons/fa';
+import Interests from './Interests';
 
 const About = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -120,6 +121,7 @@ const About = () => {
         }
       `}</style>
     </section>
+    <Interests />
   );
 };
 

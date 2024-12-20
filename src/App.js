@@ -11,6 +11,7 @@ import Resume from './components/Resume';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
+import DarkModeToggle from './components/DarkModeToggle';
 
 /**
  * The main App component that sets up the routing and renders the different sections of the website.
@@ -20,6 +21,7 @@ function App() {
   return (
     <Router>
       <Navbar />
+      <DarkModeToggle />
       <About />
       <Skills />
       <Experience />
