@@ -1,17 +1,11 @@
 import React, { useState } from 'react';
 import { Container, Row, Col, Card, Badge, Button, Modal } from 'react-bootstrap';
-import project1Img from '../images/project1.png';
-import project2Img from '../images/project2.png';
-import project3Img from '../images/project3.png';
-import project4Img from '../images/project4.png';
-import project5Img from '../images/project5.png';
-import project6Img from '../images/project6.png';
 
 // Array of project data
 const projects = [
   {
     title: 'Search Engine C++ Project (CS300)',
-    image: project1Img,
+    image: '/images/media/project1.png',
     description:
       'Implemented advanced data structures and algorithms to optimize search engine performance. Performed comprehensive evaluations of speed and efficiency on sorting algorithms and search techniques, significantly enhancing the effectiveness of information retrieval systems.',
     badges: ['C++', 'Data Structures', 'Algorithms', 'Optimization'],
@@ -19,7 +13,7 @@ const projects = [
   },
   {
     title: 'Electronic Air-Hockey Project (CS303)',
-    image: project2Img,
+    image: '/images/media/project2.png',
     description:
       'Engineered a dynamic system integrating LED and seven-segment display simulations for realistic puck movement and interactive player experiences. Collaborated effectively with a partner to design and implement the hardware simulation, emphasizing teamwork and technical proficiency in digital systems.',
     badges: ['Verilog HDL', 'FPGA', 'Vivado'],
@@ -27,7 +21,7 @@ const projects = [
   },
   {
     title: 'Open-Source Project Whisky',
-    image: project3Img,
+    image: '/images/media/project3.png',
     description:
       'Contributed over 100 English to Turkish translations, improving the gaming experience for Turkish speakers. Engaged with a global community of developers to support the Wine wrapper project, expanding the use of open-source software.',
     badges: ['Open-Source', 'Localization', 'Translation'],
@@ -35,7 +29,7 @@ const projects = [
   },
   {
     title: 'Data Analysis of Commodity Market',
-    image: project4Img,
+    image: '/images/media/project4.png',
     description:
       'Analyzed commodity market trends from 2019 to 2024 across key commodities including natural gas, crude oil, precious metals, and cryptocurrencies. Utilized data cleaning, exploratory analysis, and machine learning models like KNN and Decision Trees to predict future price movements.',
     badges: ['Python', 'Data Analysis', 'Machine Learning'],
@@ -43,7 +37,7 @@ const projects = [
   },
   {
     title: 'SongSpot Backend API',
-    image: project5Img,
+    image: '/images/media/project5.png',
     description:
       'Developed a robust backend API for SongSpot, facilitating song searches, comments, and ratings to enhance user interactions across a detailed music database.',
     badges: ['Java', 'Backend', 'Spring', 'MongoDB'],
@@ -51,7 +45,7 @@ const projects = [
   },
   {
     title: 'SongSpot Frontend Android',
-    image: project6Img,
+    image: '/images/media/project6.png',
     description:
       'Built the SongSpot app’s frontend with Java and Android SDK, offering a user-friendly mobile interface for exploring and interacting with a vast music database.',
     badges: ['Java', 'Frontend', 'Android', 'UI'],

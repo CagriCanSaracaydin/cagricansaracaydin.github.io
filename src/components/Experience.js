@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import { Container, Row, Col, Card } from 'react-bootstrap';
-import boschImage from '../images/bosch-logo.png';
-import IBTechImage from '../images/ibtech-logo.png';
 
 // Array of experience data
 const experiences = [
@@ -12,7 +10,7 @@ const experiences = [
     location: 'Istanbul, Turkey',
     description:
       'Worked on developing and maintaining banking software solutions, gaining hands-on experience in fintech and large-scale software systems.',
-    logo: IBTechImage,
+    logo: '/images/media/ibtech-logo.png',
     skills: ['Java', 'Spring Boot', 'Microservices', 'SQL', 'Agile'],
   },
   {
@@ -22,7 +20,7 @@ const experiences = [
     location: 'Bursa, Turkey',
     description:
       "Joined as a Summer School Student at Bosch, where I undertook a significant project as part of an intensive program designed for third-year and master's students in Engineering and Business disciplines.",
-    logo: boschImage,
+    logo: '/images/media/bosch-logo.png',
     skills: ['Engineering', 'Business', 'Project Management', 'Python', 'Data Analysis'],
   },
 ];

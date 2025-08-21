@@ -1,7 +1,4 @@
 import React from 'react';
-import batLogo from '../images/bat-logo.png';
-import harvardLogo from '../images/harvard.png';
-import sabanciLogo from '../images/Sabanci_University_logo.png';
 
 import batLink from '../files/BAT-Turkiye-Liderlik-Okulu_BAT-Turkiye-Liderlik-Okulu_Cagri-Can-Saracaydin.pdf';
 import harvardLink from '../files/CagriCanSaracaydin-CS50Certificate.pdf';
@@ -11,21 +8,21 @@ import sabanciLink from '../files/CagriCanSaracaydin-CertificateOfAchievement.pd
 const certificates = [
   {
     title: 'BAT Turkey Leadership',
-    image: batLogo,
+    image: '/images/media/bat-logo.png',
     description: 'Comprehensive leadership training program for high-caliber professional environments.',
     badges: ['Leadership', 'Decision-Making', 'Team Dynamics'],
     link: batLink,
   },
   {
     title: 'Harvard CS50',
-    image: harvardLogo,
+    image: '/images/media/harvard.png',
     description: "Introduction to fundamental concepts of computer science from Harvard University.",
     badges: ['Python', 'C', 'HTML/CSS', 'SQL', 'Flask'],
     link: harvardLink,
   },
   {
     title: 'Certificate of Achievement',
-    image: sabanciLogo,
+    image: '/images/media/Sabanci_University_logo.png',
     description: 'Intensive language preparation program at Sabanci University School of Languages.',
     badges: ['English Proficiency', 'Academic Writing', 'Critical Thinking'],
     link: sabanciLink,

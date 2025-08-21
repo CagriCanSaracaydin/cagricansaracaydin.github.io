@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-scroll';
-import profileImg from '../images/hero.jpeg';
 import { FaLinkedin, FaGithub, FaEnvelope } from 'react-icons/fa';
 
 const About = () => {
@@ -31,7 +30,7 @@ const About = () => {
           <div className="col-lg-5 mb-4 mb-lg-0">
             <div className="position-relative">
               <img
-                src={profileImg}
+                src="/images/media/hero.jpeg"
                 alt="Cagri"
                 className="img-fluid rounded-circle shadow-lg border border-5 border-white"
                 width="350"

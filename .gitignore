@@ -11,6 +11,10 @@
 # production
 /build
 
+# images (for open source - personal images not included)
+/public/images/media
+!/public/images/media/README.md
+
 # misc
 .DS_Store
 .env.local
