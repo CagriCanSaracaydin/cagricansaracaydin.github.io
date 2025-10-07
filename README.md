@@ -1,6 +1,17 @@
-# Getting Started with Create React App
+# Personal Portfolio Website
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a React-based personal portfolio website showcasing professional experience, education, projects, and skills.
+
+## Setup Instructions
+
+1. Clone the repository
+2. Install dependencies: `npm install`
+3. **Important**: Add your personal images to `public/images/media/` directory (see `public/images/media/README.md` for details)
+4. Start the development server: `npm start`
+
+## Image Requirements
+
+This project requires personal images that are not included in the repository for privacy reasons. Please add your own images to the `public/images/media/` directory following the specifications in `public/images/media/README.md`.
 
 ## Available Scripts
 
