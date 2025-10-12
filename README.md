@@ -4,10 +4,11 @@ This is a React-based personal portfolio website showcasing professional experie
 
 ## Setup Instructions
 
-1. Clone the repository
-2. Install dependencies: `npm install`
-3. **Important**: Add your personal images to `public/images/media/` directory (see `public/images/media/README.md` for details)
-4. Start the development server: `npm start`
+1. **Prerequisites**: Node.js 16 or 18 LTS recommended. Install via [nvm](https://github.com/nvm-sh/nvm) or [Homebrew](https://brew.sh/)
+2. Clone the repository
+3. Install dependencies: `npm install`
+4. **Important**: Add your personal images to `public/images/media/` directory (see `public/images/media/README.md` for details)
+5. Start the development server: `npm start`
 
 ## Image Requirements
 
@@ -16,6 +17,11 @@ This project requires personal images that are not included in the repository fo
 ## Available Scripts
 
 In the project directory, you can run:
+
+### `npm run serve`
+
+Serves the production build locally on port 5000.\
+Open [http://localhost:5000](http://localhost:5000) to view the production build.
 
 ### `npm start`
 

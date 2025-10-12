@@ -1,6 +1,6 @@
 import React from 'react';
 import { FaFilePdf } from 'react-icons/fa';
-import resumeLink from '../files/Cagri_Can_Saracaydin_ENG.pdf';
+import resumeLink from '../files/Cagri_Can_Saracaydin_CV_EN.pdf';
 
 // Resume component to display the resume section
 function Resume() {

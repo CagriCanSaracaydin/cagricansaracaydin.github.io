@@ -10,7 +10,7 @@ const educationData = [
     duration: '2021 - 2025',
     description:
       'The program covers a broad range of computer science topics including algorithms, data structures, software engineering, and machine learning. It provides a solid foundation for pursuing a career in software development and data science.',
-    logo: '/images/media/Sabanci_University_logo.png',
+    logo: '/images/media/Sabancı_University.png',
     logoClass: 'sabanci-logo'
   },
   {
@@ -20,7 +20,7 @@ const educationData = [
     duration: '2016 - 2020',
     description:
       'Focused on a science-intensive curriculum that prepared me for a career in engineering. Achieved high academic standards and participated in various extracurricular activities.',
-    logo: '/images/media/Bornova_Anadolu_Lisesi_Logo.png',
+    logo: '/images/media/BAL_Logo.png',
     logoClass: 'edu-logo'
   },
 ];

@@ -7,22 +7,22 @@ import sabanciLink from '../files/CagriCanSaracaydin-CertificateOfAchievement.pd
 // Array of certificate data
 const certificates = [
   {
-    title: 'BAT Turkey Leadership',
-    image: '/images/media/bat-logo.png',
-    description: 'Comprehensive leadership training program for high-caliber professional environments.',
-    badges: ['Leadership', 'Decision-Making', 'Team Dynamics'],
+    title: 'McKinsey Forward Program',
+    image: '/images/media/mckinsey-logo.png',
+    description: '10-week program developing essential workplace skills for the future of work.',
+    badges: ['Adaptability', 'Problem Solving', 'Communication'],
     link: batLink,
   },
   {
     title: 'Harvard CS50',
-    image: '/images/media/harvard.png',
+    image: '/images/media/Harvard_University.png',
     description: "Introduction to fundamental concepts of computer science from Harvard University.",
     badges: ['Python', 'C', 'HTML/CSS', 'SQL', 'Flask'],
     link: harvardLink,
   },
   {
     title: 'Certificate of Achievement',
-    image: '/images/media/Sabanci_University_logo.png',
+    image: '/images/media/Sabancı_University.png',
     description: 'Intensive language preparation program at Sabanci University School of Languages.',
     badges: ['English Proficiency', 'Academic Writing', 'Critical Thinking'],
     link: sabanciLink,

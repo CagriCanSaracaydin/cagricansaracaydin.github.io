@@ -5,22 +5,24 @@ import { FaLinkedin, FaGithub, FaEnvelope } from 'react-icons/fa';
 const About = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [typedText, setTypedText] = useState('');
-  const fullText = "  Backend Developer @ IBTech-QNB IT";
+  const fullText = " Commercial IT Analyst Intern @ Philip Morris International";
 
   useEffect(() => {
     setIsVisible(true);
-    const typeText = () => {
-      let i = 0;
-      const typing = setInterval(() => {
-        if (i < fullText.length) {
-          setTypedText(prev => prev + fullText.charAt(i));
-          i++;
-        } else {
-          clearInterval(typing);
-        }
-      }, 50);
+    let i = 0;
+    const typing = setInterval(() => {
+      if (i < fullText.length) {
+        setTypedText(fullText.substring(0, i + 1));
+        i++;
+      } else {
+        clearInterval(typing);
+      }
+    }, 50);
+
+    return () => {
+      clearInterval(typing);
+      setTypedText('');
     };
-    typeText();
   }, []);
 
   return (
@@ -30,7 +32,7 @@ const About = () => {
           <div className="col-lg-5 mb-4 mb-lg-0">
             <div className="position-relative">
               <img
-                src="/images/media/hero.jpeg"
+                src="/images/media/hero.jpg"
                 alt="Cagri"
                 className="img-fluid rounded-circle shadow-lg border border-5 border-white"
                 width="350"
