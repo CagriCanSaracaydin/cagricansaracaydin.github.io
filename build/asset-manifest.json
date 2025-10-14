@@ -1,17 +1,35 @@
 {
   "files": {
-    "main.css": "/static/css/main.8d5d155d.css",
-    "main.js": "/static/js/main.fb0e8fa4.js",
+    "main.css": "/static/css/main.a1e3d1c7.css",
+    "main.js": "/static/js/main.ba1e8aa9.js",
+    "static/js/284.12046823.chunk.js": "/static/js/284.12046823.chunk.js",
+    "static/js/96.05faebf8.chunk.js": "/static/js/96.05faebf8.chunk.js",
+    "static/js/513.3e500706.chunk.js": "/static/js/513.3e500706.chunk.js",
+    "static/js/443.c923e6dd.chunk.js": "/static/js/443.c923e6dd.chunk.js",
+    "static/js/399.f7183ee6.chunk.js": "/static/js/399.f7183ee6.chunk.js",
+    "static/js/357.592f5221.chunk.js": "/static/js/357.592f5221.chunk.js",
+    "static/js/162.0bd64f07.chunk.js": "/static/js/162.0bd64f07.chunk.js",
+    "static/js/473.4648c76a.chunk.js": "/static/js/473.4648c76a.chunk.js",
+    "static/js/763.4d4b1a45.chunk.js": "/static/js/763.4d4b1a45.chunk.js",
     "static/media/BAT-Turkiye-Liderlik-Okulu_BAT-Turkiye-Liderlik-Okulu_Cagri-Can-Saracaydin.pdf": "/static/media/BAT-Turkiye-Liderlik-Okulu_BAT-Turkiye-Liderlik-Okulu_Cagri-Can-Saracaydin.34e454dd422572c50b5c.pdf",
     "static/media/CagriCanSaracaydin-CertificateOfAchievement.pdf": "/static/media/CagriCanSaracaydin-CertificateOfAchievement.7bfc7daa0195a9fe4e6a.pdf",
     "static/media/CagriCanSaracaydin-CS50Certificate.pdf": "/static/media/CagriCanSaracaydin-CS50Certificate.83d80d94cd55d8891751.pdf",
     "static/media/Cagri_Can_Saracaydin_CV_EN.pdf": "/static/media/Cagri_Can_Saracaydin_CV_EN.f9e9f46823fd48337a76.pdf",
     "index.html": "/index.html",
-    "main.8d5d155d.css.map": "/static/css/main.8d5d155d.css.map",
-    "main.fb0e8fa4.js.map": "/static/js/main.fb0e8fa4.js.map"
+    "main.a1e3d1c7.css.map": "/static/css/main.a1e3d1c7.css.map",
+    "main.ba1e8aa9.js.map": "/static/js/main.ba1e8aa9.js.map",
+    "284.12046823.chunk.js.map": "/static/js/284.12046823.chunk.js.map",
+    "96.05faebf8.chunk.js.map": "/static/js/96.05faebf8.chunk.js.map",
+    "513.3e500706.chunk.js.map": "/static/js/513.3e500706.chunk.js.map",
+    "443.c923e6dd.chunk.js.map": "/static/js/443.c923e6dd.chunk.js.map",
+    "399.f7183ee6.chunk.js.map": "/static/js/399.f7183ee6.chunk.js.map",
+    "357.592f5221.chunk.js.map": "/static/js/357.592f5221.chunk.js.map",
+    "162.0bd64f07.chunk.js.map": "/static/js/162.0bd64f07.chunk.js.map",
+    "473.4648c76a.chunk.js.map": "/static/js/473.4648c76a.chunk.js.map",
+    "763.4d4b1a45.chunk.js.map": "/static/js/763.4d4b1a45.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.8d5d155d.css",
-    "static/js/main.fb0e8fa4.js"
+    "static/css/main.a1e3d1c7.css",
+    "static/js/main.ba1e8aa9.js"
   ]
 }
