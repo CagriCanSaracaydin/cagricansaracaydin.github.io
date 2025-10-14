@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, useMemo, useCallback } from 'react';
 
 const ThemeContext = createContext();
 
@@ -10,6 +10,12 @@ export const useTheme = () => {
   return context;
 };
 
+/**
+ * Optimized ThemeProvider with memoization to prevent unnecessary re-renders
+ * - Memoizes theme value to prevent context updates on every render
+ * - Uses useCallback for toggle function
+ * - Batches DOM updates for better performance
+ */
 export const ThemeProvider = ({ children }) => {
   // Initialize theme from localStorage or system preference
   const [theme, setTheme] = useState(() => {
@@ -30,14 +36,17 @@ export const ThemeProvider = ({ children }) => {
   useEffect(() => {
     const root = document.documentElement;
     
-    // Remove both classes first
-    root.classList.remove('light', 'dark');
-    
-    // Add the current theme class
-    root.classList.add(theme);
-    
-    // Save to localStorage
-    localStorage.setItem('theme', theme);
+    // Use requestAnimationFrame for smoother DOM updates
+    requestAnimationFrame(() => {
+      // Remove both classes first
+      root.classList.remove('light', 'dark');
+      
+      // Add the current theme class
+      root.classList.add(theme);
+      
+      // Save to localStorage
+      localStorage.setItem('theme', theme);
+    });
   }, [theme]);
 
   // Listen for system theme changes
@@ -52,19 +61,25 @@ export const ThemeProvider = ({ children }) => {
       }
     };
 
-    mediaQuery.addEventListener('change', handleChange);
+    // Use addEventListener with passive option for better scroll performance
+    mediaQuery.addEventListener('change', handleChange, { passive: true });
     return () => mediaQuery.removeEventListener('change', handleChange);
   }, []);
 
-  const toggleTheme = () => {
+  // Memoize toggle function to prevent recreating on every render
+  const toggleTheme = useCallback(() => {
     setTheme(prevTheme => prevTheme === 'light' ? 'dark' : 'light');
-  };
+  }, []);
 
-  const value = {
-    theme,
-    toggleTheme,
-    isDark: theme === 'dark'
-  };
+  // Memoize context value to prevent unnecessary re-renders of consumers
+  const value = useMemo(
+    () => ({
+      theme,
+      toggleTheme,
+      isDark: theme === 'dark'
+    }),
+    [theme, toggleTheme]
+  );
 
   return (
     <ThemeContext.Provider value={value}>
