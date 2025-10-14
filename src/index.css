@@ -3,6 +3,7 @@
 
 /* Variables */
 :root {
+  /* Legacy colors */
   --primary-color: #0056b3;
   --secondary-color: #6c757d;
   --background-color: #f8f9fa;
@@ -12,6 +13,69 @@
   --font-size-base: 16px;
   --transition-speed: 0.4s;
   --bs-progress-width: 75%;
+
+  /* Modern design system colors */
+  --background: oklch(0.99 0 0);
+  --foreground: oklch(0.25 0.01 250);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.25 0.01 250);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.25 0.01 250);
+  --primary: oklch(0.35 0.08 250);
+  --primary-foreground: oklch(0.99 0 0);
+  --secondary: oklch(0.96 0.005 250);
+  --secondary-foreground: oklch(0.25 0.01 250);
+  --muted: oklch(0.96 0.005 250);
+  --muted-foreground: oklch(0.55 0.015 250);
+  --accent: oklch(0.65 0.15 195);
+  --accent-foreground: oklch(0.99 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.99 0 0);
+  --border: oklch(0.92 0.005 250);
+  --input: oklch(0.92 0.005 250);
+  --ring: oklch(0.65 0.15 195);
+  --radius: 0.5rem;
+
+  /* RGB values for rgba() usage */
+  --background-rgb: 252, 252, 253;
+  --foreground-rgb: 64, 63, 76;
+  --card-rgb: 255, 255, 255;
+  --primary-rgb: 56, 60, 142;
+  --secondary-rgb: 244, 244, 246;
+  --accent-rgb: 59, 130, 246;
+  --border-rgb: 234, 234, 237;
+}
+
+.dark {
+  /* Dark mode colors */
+  --background: oklch(0.18 0.02 250);
+  --foreground: oklch(0.95 0.005 250);
+  --card: oklch(0.22 0.02 250);
+  --card-foreground: oklch(0.95 0.005 250);
+  --popover: oklch(0.22 0.02 250);
+  --popover-foreground: oklch(0.95 0.005 250);
+  --primary: oklch(0.75 0.12 195);
+  --primary-foreground: oklch(0.18 0.02 250);
+  --secondary: oklch(0.28 0.02 250);
+  --secondary-foreground: oklch(0.95 0.005 250);
+  --muted: oklch(0.28 0.02 250);
+  --muted-foreground: oklch(0.65 0.015 250);
+  --accent: oklch(0.65 0.15 195);
+  --accent-foreground: oklch(0.18 0.02 250);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.95 0.005 250);
+  --border: oklch(0.28 0.02 250);
+  --input: oklch(0.28 0.02 250);
+  --ring: oklch(0.65 0.15 195);
+
+  /* RGB values for rgba() usage in dark mode */
+  --background-rgb: 32, 32, 48;
+  --foreground-rgb: 242, 242, 245;
+  --card-rgb: 40, 40, 56;
+  --primary-rgb: 147, 197, 253;
+  --secondary-rgb: 51, 51, 71;
+  --accent-rgb: 59, 130, 246;
+  --border-rgb: 51, 51, 71;
 }
 
 /* Global Styles */
@@ -21,15 +85,46 @@
   box-sizing: border-box;
 }
 
+/* Smooth transitions for theme changes */
+html {
+  transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 body,
 html {
   font-family: var(--font-family);
   padding-top: 50px;
   margin: 0;
-  background-color: #eeeeee;
-  color: #333;
+  background-color: var(--background);
+  color: var(--foreground);
   line-height: 1.6;
   scroll-behavior: smooth;
+}
+
+/* Smooth transitions for all themed elements */
+body *,
+body *::before,
+body *::after {
+  transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Preserve specific transitions for interactive elements */
+.card,
+.btn,
+button,
+a,
+.nav-item-btn,
+.theme-toggle {
+  transition: transform 0.3s ease-in-out, 
+              box-shadow 0.3s ease-in-out,
+              background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.3s ease !important;
 }
 
 /* Headings */
@@ -39,15 +134,14 @@ h3,
 h4,
 h5,
 h6 {
-  color: var(--primary-color);
+  color: var(--primary);
   font-weight: 700;
-  text-transform: uppercase;
   margin-bottom: 0.5em;
 }
 
 /* Paragraphs */
 p {
-  color: #666;
+  color: var(--muted-foreground);
   font-size: 1.1em;
   margin-bottom: 1em;
 }
@@ -60,37 +154,39 @@ section {
 
 /* Global Card Styles */
 .card {
-  transition: transform 0.3s ease-in-out, box-shadow 0.5s ease-in-out; /* Increase duration and use ease-in-out */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Initial shadow */
-  border-radius: 10px;
+  transition: transform 0.3s ease-in-out, box-shadow 0.5s ease-in-out;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: var(--radius);
   overflow: hidden;
+  background-color: var(--card);
+  border: 1px solid var(--border);
 }
 
 /* Card hover effect */
 .card:hover {
-  transform: translateY(-10px) scale(1.03); /* Slight lift and scale effect */
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Deeper shadow on hover */
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-/* Additional customizations (optional) */
+/* Additional customizations */
 .card-body {
   padding: 20px;
 }
 
 .card-title {
   font-size: 1.5rem;
-  color: var(--primary-color);
+  color: var(--foreground);
 }
 
 .card-text {
   font-size: 1rem;
-  color: #333;
+  color: var(--muted-foreground);
 }
 
 /* Media Queries */
 @media (max-width: 992px) {
   .navbar {
-    background-color: #fff;
+    background-color: var(--background);
   }
 
   .navbar-collapse {
@@ -162,6 +258,18 @@ section {
 
   #contact li {
     font-size: 1rem;
+  }
+}
+
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
 

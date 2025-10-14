@@ -1,104 +1,249 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-scroll';
-import { Navbar, Nav, Container } from 'react-bootstrap';
+import { Navbar, Nav, Container, Button } from 'react-bootstrap';
+import { Menu, X } from 'lucide-react';
+import DarkModeToggle from './DarkModeToggle';
+
+const navItems = [
+  { name: 'About', href: '#about' },
+  { name: 'Skills', href: '#skills' },
+  { name: 'Experience', href: '#experience' },
+  { name: 'Projects', href: '#projects' },
+  { name: 'Education', href: '#education' },
+  { name: 'Certificates', href: '#certificates' },
+  { name: 'Contact', href: '#contact' },
+];
 
 // NavigationBar component to display the navigation bar
 const NavigationBar = () => {
-  const [activeSection, setActiveSection] = useState('');
-  const [scrolled, setScrolled] = useState(false);
-
-  // Sections to be displayed in the navigation bar
-  const sections = [
-    'About',
-    'Skills',
-    'Experience',
-    'Projects',
-    'Education',
-    'Certificates',
-    'Resume'
-  ];
+  const [activeSection, setActiveSection] = useState('about');
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-      if (scrollPosition > 50) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
+      // Add shadow when scrolled
+      setIsScrolled(window.scrollY > 10);
+
+      // Detect active section
+      const sections = navItems.map((item) => item.href.substring(1));
+      const scrollPosition = window.scrollY + 100;
+
+      // Check if we're near the bottom of the page
+      const isNearBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 100;
+      
+      if (isNearBottom) {
+        // If near bottom, activate the last section (contact)
+        setActiveSection(sections[sections.length - 1]);
+        return;
       }
 
-      const viewportHeight = window.innerHeight;
-      const triggerPoint = viewportHeight / 2;
-
-      sections.forEach((section) => {
-        const element = document.getElementById(section.toLowerCase());
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const section = sections[i];
+        const element = document.getElementById(section);
         if (element) {
-          const { top, bottom } = element.getBoundingClientRect();
-          if (top <= triggerPoint && bottom >= triggerPoint) {
-            setActiveSection(section.toLowerCase());
+          const offsetTop = element.offsetTop;
+
+          if (scrollPosition >= offsetTop) {
+            setActiveSection(section);
+            break;
           }
         }
-      });
+      }
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const scrollToSection = (href) => {
+    const element = document.querySelector(href);
+    if (element) {
+      const offset = 80; // Height of navbar
+      const elementPosition = element.offsetTop - offset;
+      window.scrollTo({
+        top: elementPosition,
+        behavior: 'smooth',
+      });
+    }
+    setIsMobileMenuOpen(false);
+  };
+
   return (
-    <Navbar
-      expand="lg"
-      fixed="top"
-      bg={scrolled ? 'white' : 'transparent'}
-      variant="light"
-      className={`transition-all duration-300 ${
-        scrolled ? 'shadow-lg py-2' : 'py-3'
-      }`}
+    <nav
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        zIndex: 50,
+        backgroundColor: 'rgba(var(--background-rgb), 0.95)',
+        backdropFilter: 'blur(8px)',
+        transition: 'all 0.3s ease',
+        borderBottom: isScrolled ? '1px solid var(--border)' : '1px solid transparent',
+        boxShadow: isScrolled ? '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)' : 'none'
+      }}
     >
-      <Container>
-        <Navbar.Brand
-          href="#"
-          className="text-primary font-weight-bold text-uppercase"
-        >
-          Cagri Can Saracaydin
-        </Navbar.Brand>
-        <Navbar.Toggle aria-controls="navbar-nav" />
-        <Navbar.Collapse id="navbar-nav">
-          <Nav className="ms-auto">
-            {sections.map((section) => (
-              <Nav.Item key={section}>
-                <Link
-                  activeClass="active"
-                  className={`nav-link px-3 py-2 mx-1 rounded transition-all duration-300 ${
-                    activeSection === section.toLowerCase()
-                      ? 'bg-primary text-white'
-                      : 'text-dark'
-                  }`}
-                  to={section.toLowerCase()}
-                  spy={true}
-                  smooth={true}
-                  duration={500}
-                  offset={-70}
+      <Container style={{ maxWidth: '1400px' }}>
+        <div className="d-flex align-items-center justify-content-between" style={{ height: '64px' }}>
+          {/* Logo/Name */}
+          <button
+            onClick={() => scrollToSection('#about')}
+            style={{
+              background: 'none',
+              border: 'none',
+              fontSize: 'clamp(1rem, 2.5vw, 1.25rem)',
+              fontWeight: '700',
+              color: 'var(--primary)',
+              transition: 'color 0.3s ease',
+              cursor: 'pointer',
+              letterSpacing: '0.05em',
+              padding: 0
+            }}
+            onMouseEnter={(e) => e.currentTarget.style.color = 'var(--accent)'}
+            onMouseLeave={(e) => e.currentTarget.style.color = 'var(--primary)'}
+          >
+            CAGRI CAN SARACAYDIN
+          </button>
+
+          {/* Desktop Navigation */}
+          <div className="d-none d-md-flex align-items-center gap-2">
+            {navItems.map((item) => {
+              const isActive = activeSection === item.href.substring(1);
+              return (
+                <button
+                  key={item.name}
+                  onClick={() => scrollToSection(item.href)}
+                  className="nav-item-btn"
+                  style={{
+                    padding: '0.5rem 1rem',
+                    borderRadius: '0.375rem',
+                    fontSize: '0.875rem',
+                    fontWeight: '500',
+                    transition: 'all 0.3s ease',
+                    position: 'relative',
+                    overflow: 'hidden',
+                    backgroundColor: isActive ? 'var(--primary)' : 'transparent',
+                    color: isActive ? 'var(--primary-foreground)' : 'var(--foreground)',
+                    border: 'none',
+                    cursor: 'pointer'
+                  }}
+                  onMouseEnter={(e) => {
+                    if (!isActive) {
+                      e.currentTarget.style.color = 'var(--accent)';
+                      e.currentTarget.style.backgroundColor = 'rgba(var(--accent-rgb), 0.1)';
+                    }
+                  }}
+                  onMouseLeave={(e) => {
+                    if (!isActive) {
+                      e.currentTarget.style.color = 'var(--foreground)';
+                      e.currentTarget.style.backgroundColor = 'transparent';
+                    }
+                  }}
                 >
-                  {section}
-                </Link>
-              </Nav.Item>
-            ))}
-          </Nav>
-        </Navbar.Collapse>
+                  {item.name}
+                  {!isActive && (
+                    <span 
+                      className="underline-effect"
+                      style={{
+                        position: 'absolute',
+                        bottom: 0,
+                        left: '50%',
+                        transform: 'translateX(-50%)',
+                        width: 0,
+                        height: '2px',
+                        backgroundColor: 'var(--accent)',
+                        transition: 'width 0.3s ease'
+                      }}
+                    />
+                  )}
+                </button>
+              );
+            })}
+            
+            {/* Dark Mode Toggle */}
+            <div style={{ marginLeft: '0.5rem', display: 'flex', alignItems: 'center' }}>
+              <DarkModeToggle />
+            </div>
+          </div>
+
+          {/* Mobile Menu Button */}
+          <div className="d-md-none d-flex align-items-center gap-2">
+            <DarkModeToggle />
+            <Button
+              variant="ghost"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              style={{
+                background: 'none',
+                border: 'none',
+                padding: '0.5rem',
+                color: 'var(--foreground)'
+              }}
+            >
+              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </Button>
+          </div>
+        </div>
       </Container>
+
+      {/* Mobile Menu */}
+      {isMobileMenuOpen && (
+        <div 
+          className="d-md-none"
+          style={{
+            borderTop: '1px solid var(--border)',
+            backgroundColor: 'rgba(var(--background-rgb), 0.98)',
+            backdropFilter: 'blur(8px)'
+          }}
+        >
+          <Container>
+            <div className="d-flex flex-column gap-2 py-4">
+              {navItems.map((item) => {
+                const isActive = activeSection === item.href.substring(1);
+                return (
+                  <button
+                    key={item.name}
+                    onClick={() => scrollToSection(item.href)}
+                    style={{
+                      width: '100%',
+                      textAlign: 'left',
+                      padding: '0.75rem 1rem',
+                      borderRadius: '0.375rem',
+                      fontSize: '0.875rem',
+                      fontWeight: '500',
+                      transition: 'all 0.3s ease',
+                      backgroundColor: isActive ? 'var(--primary)' : 'transparent',
+                      color: isActive ? 'var(--primary-foreground)' : 'var(--foreground)',
+                      border: 'none',
+                      cursor: 'pointer'
+                    }}
+                    onMouseEnter={(e) => {
+                      if (!isActive) {
+                        e.currentTarget.style.color = 'var(--accent)';
+                        e.currentTarget.style.backgroundColor = 'rgba(var(--accent-rgb), 0.1)';
+                      }
+                    }}
+                    onMouseLeave={(e) => {
+                      if (!isActive) {
+                        e.currentTarget.style.color = 'var(--foreground)';
+                        e.currentTarget.style.backgroundColor = 'transparent';
+                      }
+                    }}
+                  >
+                    {item.name}
+                  </button>
+                );
+              })}
+            </div>
+          </Container>
+        </div>
+      )}
+
       <style jsx>{`
-        .transition-all {
-          transition: all 0.3s ease-in-out;
-        }
-        .duration-300 {
-          transition-duration: 300ms;
-        }
-        .nav-link:hover {
-          background-color: rgba(0, 123, 255, 0.1);
+        .nav-item-btn:hover .underline-effect {
+          width: 75% !important;
         }
       `}</style>
-    </Navbar>
+    </nav>
   );
 };
 

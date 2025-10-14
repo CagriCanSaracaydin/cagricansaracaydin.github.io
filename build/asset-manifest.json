@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/static/css/main.85d77b37.css",
-    "main.js": "/static/js/main.8da5dbf4.js",
+    "main.css": "/static/css/main.8d5d155d.css",
+    "main.js": "/static/js/main.fb0e8fa4.js",
     "static/media/BAT-Turkiye-Liderlik-Okulu_BAT-Turkiye-Liderlik-Okulu_Cagri-Can-Saracaydin.pdf": "/static/media/BAT-Turkiye-Liderlik-Okulu_BAT-Turkiye-Liderlik-Okulu_Cagri-Can-Saracaydin.34e454dd422572c50b5c.pdf",
     "static/media/CagriCanSaracaydin-CertificateOfAchievement.pdf": "/static/media/CagriCanSaracaydin-CertificateOfAchievement.7bfc7daa0195a9fe4e6a.pdf",
     "static/media/CagriCanSaracaydin-CS50Certificate.pdf": "/static/media/CagriCanSaracaydin-CS50Certificate.83d80d94cd55d8891751.pdf",
     "static/media/Cagri_Can_Saracaydin_CV_EN.pdf": "/static/media/Cagri_Can_Saracaydin_CV_EN.f9e9f46823fd48337a76.pdf",
     "index.html": "/index.html",
-    "main.85d77b37.css.map": "/static/css/main.85d77b37.css.map",
-    "main.8da5dbf4.js.map": "/static/js/main.8da5dbf4.js.map"
+    "main.8d5d155d.css.map": "/static/css/main.8d5d155d.css.map",
+    "main.fb0e8fa4.js.map": "/static/js/main.fb0e8fa4.js.map"
   },
   "entrypoints": [
-    "static/css/main.85d77b37.css",
-    "static/js/main.8da5dbf4.js"
+    "static/css/main.8d5d155d.css",
+    "static/js/main.fb0e8fa4.js"
   ]
 }

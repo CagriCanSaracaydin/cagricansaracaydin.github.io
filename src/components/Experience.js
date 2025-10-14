@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Container, Row, Col, Card } from 'react-bootstrap';
+import { Container, Card, Badge } from 'react-bootstrap';
+import { MapPin, Calendar } from 'lucide-react';
 
 // Array of experience data
 const experiences = [
@@ -58,121 +59,252 @@ const experiences = [
 
 // Experience component
 const Experience = () => {
-  const [activeExperience, setActiveExperience] = useState(experiences[0]);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   return (
-    <section id="experience" className="py-5">
-      <Container>
-        <h2 className="text-center mb-5">Experience</h2>
-        <Row className="justify-content-center">
-          <Col md={10} lg={8}>
-            <div className="timeline">
-              {experiences.map((exp, index) => (
-                <div
-                  key={index}
-                  className={`timeline-item ${exp === activeExperience ? 'active' : ''}`}
-                  onClick={() => setActiveExperience(exp)}
+    <section id="experience" className="py-5" style={{ backgroundColor: 'var(--background)', padding: '4rem 1rem' }}>
+      <Container style={{ maxWidth: '1400px' }}>
+        <h2 className="mb-2" style={{ 
+          color: 'var(--foreground)', 
+          fontSize: 'clamp(2rem, 5vw, 3rem)', 
+          fontWeight: 'bold',
+          textAlign: 'left'
+        }}>
+          Experience
+        </h2>
+        <p style={{ 
+          fontSize: '1.125rem', 
+          color: 'var(--muted-foreground)', 
+          marginBottom: '4rem', 
+          maxWidth: '42rem' 
+        }}>
+          A timeline of my professional journey and key contributions across various organizations.
+        </p>
+
+        <div style={{ position: 'relative' }}>
+          {/* Timeline vertical line */}
+          <div 
+            className="timeline-line d-none d-sm-block"
+            style={{
+              position: 'absolute',
+              left: '0',
+              top: '0',
+              bottom: '0',
+              width: '1px',
+              backgroundColor: 'var(--border)',
+            }}
+          />
+
+          <div>
+            {experiences.map((exp, index) => (
+              <div 
+                key={index} 
+                className="experience-item"
+                onClick={() => setActiveIndex(index)}
+                style={{ 
+                  position: 'relative',
+                  marginBottom: index === experiences.length - 1 ? '0' : '3rem',
+                  cursor: 'pointer'
+                }}
+              >
+                {/* Year badge */}
+                <div 
+                  className="year-badge d-none d-sm-flex"
+                  style={{
+                    position: 'absolute',
+                    left: '0',
+                    top: '0',
+                    transform: 'translateX(-50%)',
+                    zIndex: 10,
+                    width: '64px',
+                    height: '64px',
+                    borderRadius: '50%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontSize: '0.875rem',
+                    fontWeight: '600',
+                    backgroundColor: activeIndex === index ? 'var(--primary)' : 'var(--muted)',
+                    color: activeIndex === index ? 'var(--primary-foreground)' : 'var(--muted-foreground)',
+                    transition: 'all 0.3s ease',
+                    transform: activeIndex === index ? 'translateX(-50%) scale(1.1)' : 'translateX(-50%)',
+                    boxShadow: activeIndex === index ? '0 10px 15px -3px rgba(0, 0, 0, 0.1)' : 'none'
+                  }}
                 >
-                  <div className="timeline-badge">{exp.year}</div>
-                  <Card className="timeline-card">
-                    <Card.Body>
-                      <div className="d-flex align-items-center mb-3">
-                        <img
-                          src={exp.logo}
-                          alt={`${exp.company} Logo`}
-                          className="company-logo me-4"  // Changed from me-3 to me-4 for more space
-                        />
-                        <div>
-                          <h4 className="mb-0">{exp.company}</h4>
-                          <p className="text-muted mb-0">{exp.title}</p>
-                          <p className="text-muted mb-0"><small>{exp.period}</small></p>
+                  {exp.year}
+                </div>
+
+                {/* Experience card */}
+                <div style={{ paddingLeft: '0' }}>
+                  <Card
+                    style={{
+                      backgroundColor: activeIndex === index ? 'var(--card)' : 'rgba(var(--card-rgb), 0.5)',
+                      borderColor: activeIndex === index ? 'rgba(var(--primary-rgb), 0.5)' : 'var(--border)',
+                      borderRadius: 'var(--radius)',
+                      transition: 'all 0.3s ease',
+                      boxShadow: activeIndex === index ? '0 10px 15px -3px rgba(0, 0, 0, 0.1)' : '0 1px 2px 0 rgba(0, 0, 0, 0.05)'
+                    }}
+                    className="experience-card"
+                  >
+                    <Card.Body className="p-4 p-md-5">
+                      {/* Mobile year badge */}
+                      <div className="d-sm-none mb-3">
+                        <Badge
+                          bg=""
+                          style={{
+                            backgroundColor: activeIndex === index ? 'var(--primary)' : 'var(--secondary)',
+                            color: activeIndex === index ? 'var(--primary-foreground)' : 'var(--secondary-foreground)',
+                            fontSize: '0.875rem',
+                            fontWeight: '600'
+                          }}
+                        >
+                          {exp.year}
+                        </Badge>
+                      </div>
+
+                      {/* Company header */}
+                      <div className="d-flex align-items-start gap-3 mb-4 mb-md-5">
+                        <div 
+                          style={{
+                            width: '120px',
+                            height: '120px',
+                            borderRadius: '8px',
+                            backgroundColor: 'rgba(var(--secondary-rgb), 0.5)',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            overflow: 'hidden',
+                            flexShrink: 0
+                          }}
+                        >
+                          <img
+                            src={exp.logo}
+                            alt={`${exp.company} logo`}
+                            style={{
+                              width: '100%',
+                              height: '100%',
+                              objectFit: 'contain',
+                              padding: '12px'
+                            }}
+                          />
+                        </div>
+                        <div style={{ flex: 1, minWidth: 0 }}>
+                          <h3 className="mb-1" style={{ 
+                            fontSize: '1.25rem', 
+                            fontWeight: 'bold', 
+                            color: 'var(--foreground)' 
+                          }}>
+                            {exp.company}
+                          </h3>
+                          <p className="mb-2" style={{ 
+                            fontSize: '1rem', 
+                            fontWeight: '500', 
+                            color: 'var(--primary)' 
+                          }}>
+                            {exp.title}
+                          </p>
+                          <div className="d-flex flex-wrap gap-3" style={{ 
+                            fontSize: '0.875rem', 
+                            color: 'var(--muted-foreground)' 
+                          }}>
+                            <span className="d-flex align-items-center gap-1">
+                              <MapPin size={16} />
+                              {exp.location}
+                            </span>
+                            <span className="d-flex align-items-center gap-1">
+                              <Calendar size={16} />
+                              {exp.period}
+                            </span>
+                          </div>
                         </div>
                       </div>
-                      <ul className="mb-3">
+
+                      {/* Description */}
+                      <ul className="mb-4 mb-md-5" style={{ 
+                        color: 'rgba(var(--foreground-rgb), 0.9)', 
+                        lineHeight: '1.6',
+                        paddingLeft: '0',
+                        listStyle: 'none'
+                      }}>
                         {exp.description.map((bullet, bulletIndex) => (
-                          <li key={bulletIndex}>{bullet}</li>
+                          <li key={bulletIndex} className="d-flex gap-3 mb-3" style={{ fontSize: 'clamp(0.875rem, 2vw, 1rem)' }}>
+                            <span style={{ color: 'var(--accent)', marginTop: '0.375rem', flexShrink: 0 }}>•</span>
+                            <span>{bullet}</span>
+                          </li>
                         ))}
                       </ul>
-                      <div>
+
+                      {/* Skills */}
+                      <div className="d-flex flex-wrap gap-2">
                         {exp.skills.map((skill, skillIndex) => (
-                          <span key={skillIndex} className="badge bg-light text-dark me-2 mb-2">
+                          <Badge
+                            key={skillIndex}
+                            bg=""
+                            style={{
+                              backgroundColor: 'var(--secondary)',
+                              color: 'var(--secondary-foreground)',
+                              fontSize: '0.75rem',
+                              fontWeight: '500'
+                            }}
+                          >
                             {skill}
-                          </span>
+                          </Badge>
                         ))}
                       </div>
                     </Card.Body>
                   </Card>
                 </div>
-              ))}
-            </div>
-          </Col>
-        </Row>
+              </div>
+            ))}
+          </div>
+        </div>
       </Container>
+
       <style jsx>{`
-        .timeline {
-          position: relative;
-          padding: 20px 0;
+        .experience-card:hover {
+          background-color: var(--card) !important;
+          box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1) !important;
         }
-        .timeline::before {
-          content: '';
-          position: absolute;
-          top: 20px;
-          bottom: 20px;
-          left: 50%;
-          width: 2px;
-          background-color: #000000;
-          transform: translateX(-50%);
+
+        .year-badge:hover {
+          background-color: var(--secondary) !important;
+          transform: translateX(-50%) scale(1.05) !important;
         }
-        .timeline-item {
-          position: relative;
-          margin-bottom: 50px;
-          cursor: pointer;
-        }
-        .timeline-badge {
-          position: absolute;
-          top: 0;
-          left: 50%;
-          width: 40px;
-          height: 40px;
-          line-height: 40px;
-          text-align: center;
-          background-color: #adb5bd;
-          color: #fff;
-          border-radius: 50%;
-          transform: translateX(-50%);
-          z-index: 2;
-          transition: all 0.3s ease;
-        }
-        .timeline-card {
-          width: calc(50% - 30px);
-          margin-left: auto;
-          transition: all 0.3s ease;
-        }
-        .timeline-item:nth-child(even) .timeline-card {
-          margin-left: 0;
-          margin-right: auto;
-        }
-        .timeline-item.active .timeline-badge {
-          background-color: #007bff;
-        }
-        .timeline-item.active .timeline-card {
-          box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-        }
-        .company-logo {
-          width: 120px;  
-          height: 120px;
-          object-fit: contain;
-        }
-        @media (max-width: 767px) {
-          .timeline::before {
-            left: 40px;
+
+        @media (min-width: 576px) {
+          .timeline-line {
+            left: 0 !important;
           }
-          .timeline-badge {
-            left: 40px;
+          
+          .experience-item > div:last-child {
+            padding-left: 3rem !important;
           }
-          .timeline-card {
-            width: calc(100% - 80px);
-            margin-left: 80px !important;
+        }
+
+        @media (min-width: 768px) {
+          .timeline-line {
+            left: 50% !important;
+            transform: translateX(-50%);
+          }
+          
+          .experience-item:nth-child(even) > div:last-child {
+            margin-left: auto;
+            padding-left: 3rem !important;
+            padding-right: 0;
+          }
+          
+          .experience-item:nth-child(odd) > div:last-child {
+            margin-right: auto;
+            padding-right: 3rem !important;
+            padding-left: 0;
+          }
+          
+          .experience-item > div:last-child {
+            width: calc(50% - 1.5rem);
+          }
+          
+          .year-badge {
+            left: 50% !important;
           }
         }
       `}</style>

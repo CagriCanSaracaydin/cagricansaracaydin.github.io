@@ -4,8 +4,8 @@
     right: 20px;
     width: 50px;
     height: 50px;
-    background-color: #0056b3;
-    color: white;
+    background-color: var(--primary);
+    color: var(--primary-foreground);
     border: none;
     border-radius: 50%;
     display: flex;
@@ -13,21 +13,18 @@
     align-items: center;
     font-size: 24px;
     cursor: pointer;
-    transition: opacity 0.4s, visibility 0.4s;
+    transition: opacity 0.4s, visibility 0.4s, background-color 0.3s, transform 0.3s;
     z-index: 1000;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
   
   .scroll-to-top:hover {
-    background-color: #003d82;
+    background-color: var(--accent);
+    color: var(--accent-foreground);
+    transform: translateY(-3px);
   }
   
   .scroll-to-top:focus {
-    outline: none;
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
   }
-  
-/* The .scroll-to-top class styles the button that appears when the user scrolls down the page. It is fixed at the bottom right corner of the screen, with a blue background, white text, and a circular shape. The button has a shadow and a smooth transition effect for opacity and visibility changes. */
-
-/* The .scroll-to-top:hover class changes the background color of the button to a darker blue when the user hovers over it. */
-
-/* The .scroll-to-top:focus class removes the default outline when the button is focused. */
