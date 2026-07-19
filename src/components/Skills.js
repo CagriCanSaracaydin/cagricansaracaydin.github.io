@@ -130,7 +130,7 @@ const Skills = () => {
           ))}
         </Row>
       </div>
-      <style jsx>{`
+      <style>{`
         .skill-bar:hover .skill-progress-wrapper .progress-bar {
           filter: brightness(1.1);
         }

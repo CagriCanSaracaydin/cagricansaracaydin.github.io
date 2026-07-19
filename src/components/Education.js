@@ -1,6 +1,7 @@
 import React from 'react';
-import { Card, Container, Row, Col, Badge } from 'react-bootstrap';
+import { Card, Container, Badge } from 'react-bootstrap';
 import { MapPin, Calendar, GraduationCap, School } from 'lucide-react';
+import OptimizedImage from './OptimizedImage';
 
 // Education data array containing information about each educational institution
 const educationData = [
@@ -12,7 +13,7 @@ const educationData = [
     type: 'University',
     description:
       'The program covers a broad range of computer science topics including algorithms, data structures, software engineering, and machine learning. It provides a solid foundation for pursuing a career in software development and data science.',
-    logo: '/images/media/Sabancı_University.png',
+    logo: '/images/optimized/Sabancı_University.png',
     logoClass: 'sabanci-logo'
   },
   {
@@ -23,7 +24,7 @@ const educationData = [
     type: 'High School',
     description:
       'Focused on a science-intensive curriculum that prepared me for a career in engineering. Achieved high academic standards and participated in various extracurricular activities.',
-    logo: '/images/media/BAL_Logo.png',
+    logo: '/images/optimized/BAL_Logo.png',
     logoClass: 'bornova-logo'
   },
 ];
@@ -31,7 +32,7 @@ const educationData = [
 // Education component to display educational background
 function Education() {
   return (
-    <section id="education" className="py-5" style={{ backgroundColor: 'var(--background)', padding: '4rem 1rem' }}>
+    <section id="education" className="education-section py-5" style={{ backgroundColor: 'var(--background)', padding: '4rem 1rem' }}>
       <Container style={{ maxWidth: '1400px' }}>
         <h2 className="mb-2" style={{ 
           color: 'var(--foreground)', 
@@ -73,7 +74,7 @@ function Education() {
                       alignItems: 'center',
                       justifyContent: 'center'
                     }}>
-                      <img
+                      <OptimizedImage
                         src={edu.logo}
                         alt={`${edu.institution} logo`}
                         className={`img-fluid ${edu.logoClass}`}
@@ -153,21 +154,21 @@ function Education() {
           ))}
         </div>
       </Container>
-      <style jsx>{`
-        .logo-wrapper {
+      <style>{`
+        .education-section .logo-wrapper {
           width: 128px;
           height: 128px;
           min-width: 128px;
           min-height: 128px;
           max-width: 128px;
           max-height: 128px;
-          background-color: rgba(var(--secondary), 0.5);
+          background-color: rgba(var(--secondary-rgb), 0.5);
           border-radius: 12px;
           padding: 1rem;
           transition: transform 0.3s ease;
           box-sizing: border-box;
         }
-        .education-card:hover .logo-wrapper {
+        .education-section .education-card:hover .logo-wrapper {
           transform: scale(1.05);
         }
         .sabanci-logo,
@@ -176,10 +177,10 @@ function Education() {
         }
         .education-card:hover {
           box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1) !important;
-          border-color: rgba(var(--primary), 0.5) !important;
+          border-color: rgba(var(--primary-rgb), 0.5) !important;
         }
         @media (min-width: 576px) {
-          .logo-wrapper {
+          .education-section .logo-wrapper {
             width: 144px;
             height: 144px;
             min-width: 144px;
@@ -189,7 +190,7 @@ function Education() {
           }
         }
         @media (max-width: 575px) {
-          .logo-wrapper {
+          .education-section .logo-wrapper {
             margin: 0 auto;
           }
         }

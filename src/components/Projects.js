@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Container, Row, Col, Card, Badge, Button } from 'react-bootstrap';
 import { FaGithub } from 'react-icons/fa';
 import { BiLinkExternal } from 'react-icons/bi';
+import OptimizedImage from './OptimizedImage';
 
 // Array of project data
 const projects = [
@@ -10,7 +11,7 @@ const projects = [
     title: 'Search Engine C++ Project (CS300)',
     description:
       'Implemented advanced data structures and algorithms to optimize search engine performance. Performed comprehensive evaluations of speed and efficiency on searching algorithms and search techniques, significantly enhancing the effectiveness of information retrieval systems.',
-    image: '/images/media/project1.png',
+    image: '/images/optimized/project1.png',
     technologies: ['C++', 'Data Structures', 'Algorithms'],
     category: 'C++',
     githubUrl: 'https://github.com/CagriCanSaracaydin/Search-Engine',
@@ -21,7 +22,7 @@ const projects = [
     title: 'Electronic Air-Hockey Project (CS303)',
     description:
       'Engineered a dynamic system integrating LED and seven-segment display simulations for realistic puck movement and interactive player experiences. Collaborated effectively with a partner to design and implement the hardware simulation, emphasizing teamwork and technical proficiency in digital systems.',
-    image: '/images/media/project2.png',
+    image: '/images/optimized/project2.png',
     technologies: ['Verilog HDL', 'Digital Systems', 'Hardware Design'],
     category: 'Verilog HDL',
     githubUrl: 'https://github.com/CagriCanSaracaydin/Digi-Hockey-Verilog',
@@ -32,7 +33,7 @@ const projects = [
     title: 'Open-Source Project Whisky',
     description:
       'Contributed over 100 English to Turkish translations, improving the gaming experience for Turkish speakers. Engaged with a global community of developers to support the Wine wrapper project, expanding the use of open-source software.',
-    image: '/images/media/project3.png',
+    image: '/images/optimized/project3.png',
     technologies: ['Open Source', 'Translation', 'Community'],
     category: 'Other',
     githubUrl: 'https://github.com/Whisky-App/Whisky',
@@ -43,7 +44,7 @@ const projects = [
     title: 'Data Analysis of Commodity Market',
     description:
       'Analyzed commodity market trends from 2019 to 2024 across key commodities including natural gas, crude oil, precious metals, and cryptocurrencies. Utilized data cleaning, exploratory analysis, and machine learning models like KNN and Decision Trees to predict future price movements.',
-    image: '/images/media/project4.png',
+    image: '/images/optimized/project4.png',
     technologies: ['Python', 'Machine Learning', 'Pandas'],
     category: 'Python',
     githubUrl: 'https://github.com/CagriCanSaracaydin/Data-Analysis-of-Commodity-Market',
@@ -54,7 +55,7 @@ const projects = [
     title: 'SongSpot Backend API',
     description:
       'Developed a robust backend API for SongSpot, facilitating song searches, comments, and ratings to enhance user interactions across a detailed music database.',
-    image: '/images/media/project5.png',
+    image: '/images/optimized/project5.png',
     technologies: ['Java', 'Spring Boot', 'MongoDB'],
     category: 'Java',
     githubUrl: 'https://github.com/CagriCanSaracaydin/SongSpot-Backend',
@@ -65,7 +66,7 @@ const projects = [
     title: 'SongSpot Frontend Android',
     description:
       'Built the SongSpot app\'s frontend with Java and Android SDK, offering a user-friendly mobile interface for exploring and interacting with a vast music database.',
-    image: '/images/media/project6.png',
+    image: '/images/optimized/project6.png',
     technologies: ['Java', 'Android SDK', 'Mobile Development'],
     category: 'Java',
     githubUrl: 'https://github.com/CagriCanSaracaydin/SongSpot-Frontend',
@@ -89,7 +90,7 @@ function Projects() {
     activeFilter === 'all' ? projects : projects.filter((project) => project.category === activeFilter);
 
   return (
-    <section id="projects" className="py-5" data-aos="fade-up" style={{ backgroundColor: 'var(--background)', padding: '4rem 1rem' }}>
+    <section id="projects" className="py-5" style={{ backgroundColor: 'var(--background)', padding: '4rem 1rem' }}>
       <Container style={{ maxWidth: '1400px' }}>
         {/* Header */}
         <h2 className="mb-2" style={{ 
@@ -115,6 +116,7 @@ function Projects() {
             <Button
               key={category.value}
               onClick={() => setActiveFilter(category.value)}
+              aria-pressed={activeFilter === category.value}
               variant={activeFilter === category.value ? 'primary' : 'outline-primary'}
               className={`filter-btn ${activeFilter === category.value ? 'active' : ''}`}
               style={
@@ -139,7 +141,7 @@ function Projects() {
         {/* Projects Grid */}
         <Row xs={1} md={2} lg={3} className="g-4 g-md-5">
           {filteredProjects.map((project) => (
-            <Col key={project.id} data-aos="fade-up">
+            <Col key={project.id}>
               <Card
                 className="h-100 project-card"
                 style={{
@@ -151,8 +153,7 @@ function Projects() {
               >
                 {/* Project Image */}
                 <div className="project-image-wrapper">
-                  <Card.Img
-                    variant="top"
+                  <OptimizedImage
                     src={project.image}
                     alt={project.title}
                     className="project-image"
@@ -239,7 +240,7 @@ function Projects() {
         )}
       </Container>
 
-      <style jsx>{`
+      <style>{`
         .filter-btn {
           transition: all 0.3s ease;
         }

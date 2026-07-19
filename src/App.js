@@ -1,5 +1,4 @@
 import React, { lazy, Suspense } from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
 import { ThemeProvider } from './contexts/ThemeContext';
 
 // Critical components loaded immediately
@@ -42,8 +41,8 @@ const LoadingFallback = () => (
 function App() {
   return (
     <ThemeProvider>
-      <Router>
-        <Navbar />
+      <Navbar />
+      <main>
         <Suspense fallback={<LoadingFallback />}>
           <About />
         </Suspense>
@@ -65,9 +64,9 @@ function App() {
         <Suspense fallback={<LoadingFallback />}>
           <Resume />
         </Suspense>
-        <Footer />
-        <ScrollToTop />
-      </Router>
+      </main>
+      <Footer />
+      <ScrollToTop />
     </ThemeProvider>
   );
 }

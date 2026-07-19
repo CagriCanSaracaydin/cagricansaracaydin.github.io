@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Container, Card, Badge } from 'react-bootstrap';
 import { MapPin, Calendar } from 'lucide-react';
+import OptimizedImage from './OptimizedImage';
 
 // Array of experience data
 const experiences = [
@@ -14,7 +15,7 @@ const experiences = [
       'Migrated Power BI reports from AWS to Snowflake database with optimized queries and modernized UI design, improving report performance and user experience',
       'Automated key IT workflows using Jira and AWS, including test reporting and security monitoring, to improve team productivity and support compliance efforts'
     ],
-    logo: '/images/media/pmi-logo.png',
+    logo: '/images/optimized/pmi-logo.png',
     skills: ['Power BI', 'AWS', 'Snowflake', 'Jira', 'SQL', 'UI Design'],
   },
   {
@@ -26,7 +27,7 @@ const experiences = [
     description: [
       'Applied McKinsey problem-solving frameworks to real business cases, developed investment strategies in team settings, and networked with consultants from diverse backgrounds'
     ],
-    logo: '/images/media/mckinsey-logo.png',
+    logo: '/images/optimized/mckinsey-logo.png',
     skills: ['Problem-Solving', 'Investment Strategy', 'Consulting', 'Teamwork', 'Networking'],
   },
   {
@@ -39,7 +40,7 @@ const experiences = [
       'Refactored C# and Java code and optimized Oracle SQL queries for the Leasing Branch application, resulting in a 10% faster transaction data retrieval rate',
       'Leveraged Jira and Azure DevOps to manage daily feature tasks and optimizations assigned by the Product Manager, ensuring on-time delivery and streamlined development workflows'
     ],
-    logo: '/images/media/ibtech-logo.png',
+    logo: '/images/optimized/ibtech-logo.png',
     skills: ['C#', 'Java', 'Oracle SQL', 'Jira', 'Azure DevOps', 'Agile'],
   },
   {
@@ -52,7 +53,7 @@ const experiences = [
       'Developed and integrated a Python-based data analysis application, boosting process performance by 90% and enabling analysis of 50 times more data',
       'Shortened the nozzle R&D cycle by 20% through effective collaboration with cross-functional teams'
     ],
-    logo: '/images/media/bosch-logo.png',
+    logo: '/images/optimized/bosch-logo.png',
     skills: ['Python', 'Data Analysis', 'R&D', 'Cross-functional Collaboration', 'Process Optimization'],
   },
 ];
@@ -101,6 +102,15 @@ const Experience = () => {
                 key={index} 
                 className="experience-item"
                 onClick={() => setActiveIndex(index)}
+                onKeyDown={(event) => {
+                  if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    setActiveIndex(index);
+                  }
+                }}
+                role="button"
+                tabIndex={0}
+                aria-pressed={activeIndex === index}
                 style={{ 
                   position: 'relative',
                   marginBottom: index === experiences.length - 1 ? '0' : '3rem',
@@ -177,7 +187,7 @@ const Experience = () => {
                             flexShrink: 0
                           }}
                         >
-                          <img
+                          <OptimizedImage
                             src={exp.logo}
                             alt={`${exp.company} logo`}
                             style={{
@@ -260,7 +270,7 @@ const Experience = () => {
         </div>
       </Container>
 
-      <style jsx>{`
+      <style>{`
         .experience-card:hover {
           background-color: var(--card) !important;
           box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1) !important;

@@ -5,3 +5,22 @@
  * learn more: https://github.com/testing-library/jest-dom
  */
 import '@testing-library/jest-dom';
+
+Object.defineProperty(window, 'matchMedia', {
+  writable: true,
+  value: (query) => ({
+    matches: false,
+    media: query,
+    onchange: null,
+    addEventListener: () => {},
+    removeEventListener: () => {},
+    addListener: () => {},
+    removeListener: () => {},
+    dispatchEvent: () => false,
+  }),
+});
+
+Object.defineProperty(window, 'scrollTo', {
+  writable: true,
+  value: jest.fn(),
+});

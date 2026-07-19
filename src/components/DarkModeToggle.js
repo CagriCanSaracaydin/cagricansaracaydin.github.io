@@ -7,7 +7,7 @@ import { useTheme } from '../contexts/ThemeContext';
  * A beautiful animated toggle switch for switching between light and dark themes
  */
 const DarkModeToggle = () => {
-  const { theme, toggleTheme, isDark } = useTheme();
+  const { toggleTheme, isDark } = useTheme();
 
   return (
     <button
@@ -119,7 +119,7 @@ const DarkModeToggle = () => {
         </div>
       </div>
 
-      <style jsx>{`
+      <style>{`
         .theme-toggle:focus-visible {
           outline: 2px solid var(--ring);
           outline-offset: 2px;

@@ -1,89 +1,44 @@
-# Personal Portfolio Website
+# Personal Portfolio
 
-This is a React-based personal portfolio website showcasing professional experience, education, projects, and skills.
+React portfolio for Cagri Can Saracaydin, published at [cagricansaracaydin.github.io](https://cagricansaracaydin.github.io).
 
-## Setup Instructions
+## Local Development
 
-1. **Prerequisites**: Node.js 16 or 18 LTS recommended. Install via [nvm](https://github.com/nvm-sh/nvm) or [Homebrew](https://brew.sh/)
-2. Clone the repository
-3. Install dependencies: `npm install`
-4. **Important**: Add your personal images to `public/images/media/` directory (see `public/images/media/README.md` for details)
-5. Start the development server: `npm start`
+Node.js 18 or 20 LTS is recommended.
 
-## Image Requirements
+```bash
+npm install
+npm start
+```
 
-This project requires personal images that are not included in the repository for privacy reasons. Please add your own images to the `public/images/media/` directory following the specifications in `public/images/media/README.md`.
+The development server runs at `http://localhost:3000` with hot reload.
 
-## Available Scripts
+## Validation
 
-In the project directory, you can run:
+```bash
+npm test           # Interactive Jest watch mode
+npm run test:ci    # Run the test suite once
+npm run build      # Create an optimized production bundle
+npm run serve      # Serve build/ at http://localhost:5000
+```
 
-### `npm run serve`
+## Content and Assets
 
-Serves the production build locally on port 5000.\
-Open [http://localhost:5000](http://localhost:5000) to view the production build.
+Portfolio content is stored directly in the components under `src/components/`. Update the matching metadata in `public/index.html` and `public/sitemap.xml` when experience or education changes.
 
-### `npm start`
+Components serve committed assets from `public/images/optimized/` through `OptimizedImage`. To replace images:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. Put PNG or JPEG source files in the ignored `public/images/media/` directory.
+2. Keep the existing base filenames referenced by the components.
+3. Run `node scripts/optimize-images.js`.
+4. Review and commit the regenerated files in `public/images/optimized/`.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Downloadable resumes and certificates live in `src/files/` and are bundled with hashed filenames.
 
-### `npm test`
+## Deployment
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+npm run deploy
+```
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-# lastt
-# lastt
+The deploy command builds the application and publishes `build/` to the `gh-pages` branch. The Google Analytics measurement ID is configured in `public/index.html`; the optional `REACT_APP_ANALYTICS_ENDPOINT` build variable can receive Web Vitals and must not contain secrets.

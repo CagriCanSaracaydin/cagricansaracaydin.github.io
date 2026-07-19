@@ -1,8 +1,9 @@
 import React from 'react';
 import { Card, Container, Row, Col, Button, Badge } from 'react-bootstrap';
 import { Award, ExternalLink } from 'lucide-react';
+import OptimizedImage from './OptimizedImage';
 
-import batLink from '../files/BAT-Turkiye-Liderlik-Okulu_BAT-Turkiye-Liderlik-Okulu_Cagri-Can-Saracaydin.pdf';
+import McKinseyLink from '../files/Forward.pdf';
 import harvardLink from '../files/CagriCanSaracaydin-CS50Certificate.pdf';
 import sabanciLink from '../files/CagriCanSaracaydin-CertificateOfAchievement.pdf';
 
@@ -12,15 +13,15 @@ const certificates = [
     organization: 'McKinsey & Company',
     title: 'McKinsey Forward Program',
     description: '10-week program developing essential workplace skills for the future of work.',
-    image: '/images/media/mckinsey-logo.png',
+    image: '/images/optimized/mckinsey-logo.png',
     skills: ['Adaptability', 'Problem Solving', 'Communication'],
-    link: batLink,
+    link: McKinseyLink,
   },
   {
     organization: 'Harvard University',
     title: 'Harvard CS50',
     description: 'Introduction to fundamental concepts of computer science from Harvard University.',
-    image: '/images/media/Harvard_University.png',
+    image: '/images/optimized/Harvard_University.png',
     skills: ['Python', 'C', 'HTML/CSS', 'SQL', 'Flask'],
     link: harvardLink,
   },
@@ -28,7 +29,7 @@ const certificates = [
     organization: 'Sabanci University',
     title: 'Certificate of Achievement',
     description: 'Intensive language preparation program at Sabanci University School of Languages.',
-    image: '/images/media/Sabancı_University.png',
+    image: '/images/optimized/Sabancı_University.png',
     skills: ['English Proficiency', 'Academic Writing', 'Critical Thinking'],
     link: sabanciLink,
   },
@@ -39,8 +40,9 @@ function Certificates() {
   return (
     <section 
       id="certificates" 
+      className="certificates-section"
       style={{ 
-        backgroundColor: 'rgba(var(--muted), 0.3)',
+        backgroundColor: 'rgba(var(--secondary-rgb), 0.3)',
         padding: '4rem 1rem'
       }}
     >
@@ -81,7 +83,7 @@ function Certificates() {
                   {/* Logo Section */}
                   <div className="mb-4 d-flex justify-content-center">
                     <div className="logo-wrapper">
-                      <img
+                      <OptimizedImage
                         src={cert.image}
                         alt={`${cert.organization} logo`}
                         className={`certificate-logo ${
@@ -166,20 +168,20 @@ function Certificates() {
         </Row>
       </Container>
       
-      <style jsx>{`
-        .logo-wrapper {
+      <style>{`
+        .certificates-section .logo-wrapper {
           width: 128px;
           height: 128px;
           border-radius: 8px;
-          background-color: rgba(var(--secondary), 0.3);
+          background-color: rgba(var(--secondary-rgb), 0.3);
           display: flex;
           align-items: center;
           justify-content: center;
           overflow: hidden;
-          border: 1px solid rgba(var(--border), 0.5);
+          border: 1px solid rgba(var(--border-rgb), 0.5);
           transition: transform 0.3s ease;
         }
-        .certificate-card:hover .logo-wrapper {
+        .certificates-section .certificate-card:hover .logo-wrapper {
           transform: scale(1.05);
         }
         .certificate-logo {
@@ -205,13 +207,13 @@ function Certificates() {
         }
         .certificate-card:hover {
           box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
-          border-color: rgba(var(--primary), 0.5) !important;
+          border-color: rgba(var(--primary-rgb), 0.5) !important;
         }
         .certificate-card:hover .cert-title {
           color: var(--primary) !important;
         }
         .skill-badge:hover {
-          background-color: rgba(var(--accent), 0.2) !important;
+          background-color: rgba(var(--accent-rgb), 0.2) !important;
           color: var(--accent) !important;
         }
         .view-cert-btn:hover {

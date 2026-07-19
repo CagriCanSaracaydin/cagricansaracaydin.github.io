@@ -1,85 +1,75 @@
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import App from './App';
-import About from './components/About';
-import Certificates from './components/Certificates';
-import Contact from './components/Contact';
-import Education from './components/Education';
-import Experience from './components/Experience';
-import Footer from './components/Footer';
+import DarkModeToggle from './components/DarkModeToggle';
 import Navbar from './components/Navbar';
 import Projects from './components/Projects';
-import Resume from './components/Resume';
 import ScrollToTop from './components/ScrollToTop';
-import Skills from './components/Skills';
+import { ThemeProvider } from './contexts/ThemeContext';
 
-test('renders learn react link', () => {
+beforeEach(() => {
+  localStorage.clear();
+  document.documentElement.classList.remove('light', 'dark');
+  window.scrollTo.mockClear();
+});
+
+test('renders the current portfolio sections', async () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+
+  expect(screen.getByRole('navigation', { name: /primary navigation/i })).toBeInTheDocument();
+  expect(await screen.findByRole('heading', { name: /projects/i })).toBeInTheDocument();
+  expect(await screen.findByRole('heading', { name: /certificates/i })).toBeInTheDocument();
+  expect(await screen.findByRole('link', { name: /view resume/i })).toHaveAttribute('href');
 });
 
-test('renders About component', () => {
-  render(<About />);
-  const aboutElement = screen.getByText(/Backend Developer @ IBTech-QNB IT/i);
-  expect(aboutElement).toBeInTheDocument();
-});
-
-test('renders Certificates component', () => {
-  render(<Certificates />);
-  const certificatesElement = screen.getByText(/BAT Turkey Leadership/i);
-  expect(certificatesElement).toBeInTheDocument();
-});
-
-test('renders Contact component', () => {
-  render(<Contact />);
-  const contactElement = screen.getByText(/Contact Me/i);
-  expect(contactElement).toBeInTheDocument();
-});
-
-test('renders Education component', () => {
-  render(<Education />);
-  const educationElement = screen.getByText(/Sabanci University/i);
-  expect(educationElement).toBeInTheDocument();
-});
-
-test('renders Experience component', () => {
-  render(<Experience />);
-  const experienceElement = screen.getByText(/IBTech/i);
-  expect(experienceElement).toBeInTheDocument();
-});
-
-test('renders Footer component', () => {
-  render(<Footer />);
-  const footerElement = screen.getByText(/Cagri Can Saracaydin/i);
-  expect(footerElement).toBeInTheDocument();
-});
-
-test('renders Navbar component', () => {
-  render(<Navbar />);
-  const navbarElement = screen.getByText(/Cagri Can Saracaydin/i);
-  expect(navbarElement).toBeInTheDocument();
-});
-
-test('renders Projects component', () => {
+test('filters projects by technology category', () => {
   render(<Projects />);
-  const projectsElement = screen.getByText(/Search Engine C++ Project/i);
-  expect(projectsElement).toBeInTheDocument();
+
+  fireEvent.click(screen.getByRole('button', { name: 'Python' }));
+
+  expect(screen.getByText(/data analysis of commodity market/i)).toBeInTheDocument();
+  expect(screen.queryByText(/search engine c\+\+ project/i)).not.toBeInTheDocument();
+  expect(screen.getByRole('button', { name: 'Python' })).toHaveAttribute('aria-pressed', 'true');
 });
 
-test('renders Resume component', () => {
-  render(<Resume />);
-  const resumeElement = screen.getByText(/View Resume/i);
-  expect(resumeElement).toBeInTheDocument();
+test('persists an explicit theme selection', async () => {
+  render(
+    <ThemeProvider>
+      <DarkModeToggle />
+    </ThemeProvider>
+  );
+
+  fireEvent.click(screen.getByRole('button', { name: /switch to dark mode/i }));
+
+  await waitFor(() => expect(document.documentElement).toHaveClass('dark'));
+  expect(localStorage.getItem('theme')).toBe('dark');
 });
 
-test('renders ScrollToTop component', () => {
-  render(<ScrollToTop />);
-  const scrollToTopElement = screen.getByLabelText(/Scroll to Top/i);
-  expect(scrollToTopElement).toBeInTheDocument();
+test('exposes mobile navigation state to assistive technology', () => {
+  render(
+    <ThemeProvider>
+      <Navbar />
+    </ThemeProvider>
+  );
+
+  const menuButton = screen.getByRole('button', { name: /open navigation menu/i });
+  fireEvent.click(menuButton);
+
+  expect(screen.getByRole('button', { name: /close navigation menu/i })).toHaveAttribute('aria-expanded', 'true');
+  expect(document.getElementById('mobile-navigation-menu')).toBeInTheDocument();
 });
 
-test('renders Skills component', () => {
-  render(<Skills />);
-  const skillsElement = screen.getByText(/Programming Languages/i);
-  expect(skillsElement).toBeInTheDocument();
+test('reveals the scroll-to-top control after the skills section', () => {
+  Object.defineProperty(window, 'pageYOffset', { configurable: true, value: 100 });
+
+  render(
+    <>
+      <div id="skills" />
+      <ScrollToTop />
+    </>
+  );
+  fireEvent.scroll(window);
+
+  const button = screen.getByRole('button', { name: /scroll to top/i });
+  fireEvent.click(button);
+  expect(window.scrollTo).toHaveBeenCalledWith({ top: 0, behavior: 'smooth' });
 });

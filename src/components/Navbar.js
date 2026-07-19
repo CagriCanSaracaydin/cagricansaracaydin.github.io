@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Navbar, Nav, Container, Button } from 'react-bootstrap';
+import { Container, Button } from 'react-bootstrap';
 import { Menu, X } from 'lucide-react';
 import DarkModeToggle from './DarkModeToggle';
 
@@ -51,9 +51,21 @@ const NavigationBar = () => {
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  useEffect(() => {
+    if (!isMobileMenuOpen) return undefined;
+
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') setIsMobileMenuOpen(false);
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isMobileMenuOpen]);
 
   const scrollToSection = (href) => {
     const element = document.querySelector(href);
@@ -70,6 +82,7 @@ const NavigationBar = () => {
 
   return (
     <nav
+      aria-label="Primary navigation"
       style={{
         position: 'fixed',
         top: 0,
@@ -88,6 +101,7 @@ const NavigationBar = () => {
           {/* Logo/Name */}
           <button
             onClick={() => scrollToSection('#about')}
+            aria-label="Go to About section"
             style={{
               background: 'none',
               border: 'none',
@@ -113,6 +127,7 @@ const NavigationBar = () => {
                 <button
                   key={item.name}
                   onClick={() => scrollToSection(item.href)}
+                  aria-current={isActive ? 'true' : undefined}
                   className="nav-item-btn"
                   style={{
                     padding: '0.5rem 1rem',
@@ -172,6 +187,9 @@ const NavigationBar = () => {
             <Button
               variant="ghost"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label={isMobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+              aria-expanded={isMobileMenuOpen}
+              aria-controls="mobile-navigation-menu"
               style={{
                 background: 'none',
                 border: 'none',
@@ -188,6 +206,7 @@ const NavigationBar = () => {
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
         <div 
+          id="mobile-navigation-menu"
           className="d-md-none"
           style={{
             borderTop: '1px solid var(--border)',
@@ -203,6 +222,7 @@ const NavigationBar = () => {
                   <button
                     key={item.name}
                     onClick={() => scrollToSection(item.href)}
+                    aria-current={isActive ? 'true' : undefined}
                     style={{
                       width: '100%',
                       textAlign: 'left',
@@ -238,7 +258,7 @@ const NavigationBar = () => {
         </div>
       )}
 
-      <style jsx>{`
+      <style>{`
         .nav-item-btn:hover .underline-effect {
           width: 75% !important;
         }

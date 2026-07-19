@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-scroll';
 import { FaLinkedin, FaGithub, FaEnvelope } from 'react-icons/fa';
+import OptimizedImage from './OptimizedImage';
 
 const About = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -31,23 +31,25 @@ const About = () => {
         <div className={`row align-items-center ${isVisible ? 'fade-in' : ''}`}>
           <div className="col-lg-5 mb-4 mb-lg-0">
             <div className="position-relative">
-              <img
-                src="/images/media/hero.jpg"
-                alt="Cagri"
+              <OptimizedImage
+                src="/images/optimized/hero.jpg"
+                alt="Cagri Can Saracaydin"
                 className="img-fluid rounded-circle shadow-lg border border-5"
                 style={{ borderColor: 'var(--card)' }}
                 width="350"
                 height="350"
-                aria-label="Profile picture of Cagri Can Saracaydin"
+                priority
               />
             </div>
           </div>
           <div className="col-lg-7">
             <h1 className="display-4 fw-bold mb-4" style={{ color: 'var(--foreground)' }}>Cagri Can Saracaydin</h1>
-            <p className="lead mb-4 typewriter" style={{ color: 'var(--foreground)' }}>{typedText}</p>
+            <p className="lead mb-4 typewriter" style={{ color: 'var(--foreground)' }} aria-label={fullText.trim()}>
+              <span aria-hidden="true">{typedText}</span>
+            </p>
             <p className="mb-4" style={{ color: 'var(--muted-foreground)' }}>
-              Senior at Sabanci University in Istanbul, Turkey. With a passion for technology and its potential to solve complex problems, 
-              I am eager to forge a career that bridges software development and data science.
+              Computer Science and Engineering graduate from Sabanci University in Istanbul, Turkey. I build software and data solutions
+              that turn complex operational problems into reliable, maintainable systems.
             </p>
             <div className="d-flex flex-wrap gap-3 mb-4">
               <a
@@ -78,11 +80,8 @@ const About = () => {
               >
                 <FaGithub className="me-2" /> GitHub
               </a>
-              <Link
-                to="contact"
-                spy={true}
-                smooth={true}
-                duration={500}
+              <a
+                href="#contact"
                 className="btn btn-lg"
                 style={{ 
                   backgroundColor: 'transparent', 
@@ -92,7 +91,7 @@ const About = () => {
                 aria-label="Contact Me"
               >
                 <FaEnvelope className="me-2" /> Contact Me
-              </Link>
+              </a>
             </div>
             <div className="d-flex flex-wrap gap-3">
               <span className="badge p-2" style={{ backgroundColor: 'var(--secondary)', color: 'var(--secondary-foreground)' }}>Python</span>
@@ -104,7 +103,7 @@ const About = () => {
         </div>
       </div>
       <div className="background-animation"></div>
-      <style jsx>{`
+      <style>{`
         .fade-in {
           animation: fadeIn 1s ease-out;
         }

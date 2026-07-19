@@ -169,10 +169,9 @@ async function main() {
     console.log(`   Space saved: ${((totalOriginalSize - totalOptimizedSize) / 1024 / 1024).toFixed(2)} MB\n`);
     
     console.log('📝 Next Steps:');
-    console.log('   1. Update image paths to use optimized versions');
-    console.log('   2. Implement <picture> tags with format fallbacks');
-    console.log('   3. Add lazy loading to images');
-    console.log('   4. Test on multiple browsers\n');
+    console.log('   1. Review the generated files in public/images/optimized');
+    console.log('   2. Verify the portfolio in light and dark themes');
+    console.log('   3. Commit the approved optimized assets\n');
     
   } catch (error) {
     console.error('❌ Error:', error.message);
