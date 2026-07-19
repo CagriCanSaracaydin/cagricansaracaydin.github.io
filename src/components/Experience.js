@@ -6,11 +6,20 @@ import OptimizedImage from './OptimizedImage';
 // Array of experience data
 const experiences = [
   {
+    year: '2026',
+    company: 'Deloitte',
+    title: 'Engineering, AI & Data Business Analyst',
+    location: 'Istanbul, Turkey',
+    period: 'June 2026 - Present',
+    description: [],
+    skills: [],
+  },
+  {
     year: '2025',
     company: 'Philip Morris International',
     title: 'Commercial IT Analyst Intern',
     location: 'Istanbul, Turkey',
-    period: 'July 2025 - Present',
+    period: 'July 2025 - May 2026',
     description: [
       'Migrated Power BI reports from AWS to Snowflake database with optimized queries and modernized UI design, improving report performance and user experience',
       'Automated key IT workflows using Jira and AWS, including test reporting and security monitoring, to improve team productivity and support compliance efforts'
@@ -173,7 +182,9 @@ const Experience = () => {
                       </div>
 
                       {/* Company header */}
-                      <div className="d-flex align-items-start gap-3 mb-4 mb-md-5">
+                      <div className={`d-flex align-items-start gap-3 ${
+                        exp.description.length > 0 || exp.skills.length > 0 ? 'mb-4 mb-md-5' : ''
+                      }`}>
                         <div 
                           style={{
                             width: '120px',
@@ -187,16 +198,22 @@ const Experience = () => {
                             flexShrink: 0
                           }}
                         >
-                          <OptimizedImage
-                            src={exp.logo}
-                            alt={`${exp.company} logo`}
-                            style={{
-                              width: '100%',
-                              height: '100%',
-                              objectFit: 'contain',
-                              padding: '12px'
-                            }}
-                          />
+                          {exp.logo ? (
+                            <OptimizedImage
+                              src={exp.logo}
+                              alt={`${exp.company} logo`}
+                              style={{
+                                width: '100%',
+                                height: '100%',
+                                objectFit: 'contain',
+                                padding: '12px'
+                              }}
+                            />
+                          ) : (
+                            <span style={{ color: 'var(--foreground)', fontWeight: 700 }}>
+                              Deloitte<span style={{ color: '#86bc25' }}>.</span>
+                            </span>
+                          )}
                         </div>
                         <div style={{ flex: 1, minWidth: 0 }}>
                           <h3 className="mb-1" style={{ 
@@ -230,7 +247,7 @@ const Experience = () => {
                       </div>
 
                       {/* Description */}
-                      <ul className="mb-4 mb-md-5" style={{ 
+                      {exp.description.length > 0 && <ul className="mb-4 mb-md-5" style={{
                         color: 'rgba(var(--foreground-rgb), 0.9)', 
                         lineHeight: '1.6',
                         paddingLeft: '0',
@@ -242,10 +259,10 @@ const Experience = () => {
                             <span>{bullet}</span>
                           </li>
                         ))}
-                      </ul>
+                      </ul>}
 
                       {/* Skills */}
-                      <div className="d-flex flex-wrap gap-2">
+                      {exp.skills.length > 0 && <div className="d-flex flex-wrap gap-2">
                         {exp.skills.map((skill, skillIndex) => (
                           <Badge
                             key={skillIndex}
@@ -260,7 +277,7 @@ const Experience = () => {
                             {skill}
                           </Badge>
                         ))}
-                      </div>
+                      </div>}
                     </Card.Body>
                   </Card>
                 </div>

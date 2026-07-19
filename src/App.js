@@ -8,7 +8,6 @@ import ScrollToTop from './components/ScrollToTop';
 
 // Lazy load non-critical components for code splitting
 const About = lazy(() => import('./components/About'));
-const Skills = lazy(() => import('./components/Skills'));
 const Experience = lazy(() => import('./components/Experience'));
 const Projects = lazy(() => import('./components/Projects'));
 const Education = lazy(() => import('./components/Education'));
@@ -45,9 +44,6 @@ function App() {
       <main>
         <Suspense fallback={<LoadingFallback />}>
           <About />
-        </Suspense>
-        <Suspense fallback={<LoadingFallback />}>
-          <Skills />
         </Suspense>
         <Suspense fallback={<LoadingFallback />}>
           <Experience />

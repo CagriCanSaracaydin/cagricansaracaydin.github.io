@@ -1,6 +1,7 @@
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import App from './App';
 import DarkModeToggle from './components/DarkModeToggle';
+import Experience from './components/Experience';
 import Navbar from './components/Navbar';
 import Projects from './components/Projects';
 import ScrollToTop from './components/ScrollToTop';
@@ -16,9 +17,22 @@ test('renders the current portfolio sections', async () => {
   render(<App />);
 
   expect(screen.getByRole('navigation', { name: /primary navigation/i })).toBeInTheDocument();
+  expect(await screen.findByRole('heading', { name: /cagri can saracaydin/i })).toBeInTheDocument();
+  expect(await screen.findByText(/computer science and engineering graduate/i)).toBeInTheDocument();
   expect(await screen.findByRole('heading', { name: /projects/i })).toBeInTheDocument();
   expect(await screen.findByRole('heading', { name: /certificates/i })).toBeInTheDocument();
   expect(await screen.findByRole('link', { name: /view resume/i })).toHaveAttribute('href');
+  expect(screen.queryByRole('heading', { name: /^skills$/i })).not.toBeInTheDocument();
+  expect(screen.queryByRole('button', { name: /^skills$/i })).not.toBeInTheDocument();
+});
+
+test('shows the current Deloitte role and completed PMI dates', () => {
+  render(<Experience />);
+
+  expect(screen.getByRole('heading', { name: 'Deloitte' })).toBeInTheDocument();
+  expect(screen.getByText('Engineering, AI & Data Business Analyst')).toBeInTheDocument();
+  expect(screen.getByText('June 2026 - Present')).toBeInTheDocument();
+  expect(screen.getByText('July 2025 - May 2026')).toBeInTheDocument();
 });
 
 test('filters projects by technology category', () => {
@@ -58,12 +72,12 @@ test('exposes mobile navigation state to assistive technology', () => {
   expect(document.getElementById('mobile-navigation-menu')).toBeInTheDocument();
 });
 
-test('reveals the scroll-to-top control after the skills section', () => {
+test('reveals the scroll-to-top control after the experience section', () => {
   Object.defineProperty(window, 'pageYOffset', { configurable: true, value: 100 });
 
   render(
     <>
-      <div id="skills" />
+      <div id="experience" />
       <ScrollToTop />
     </>
   );

@@ -157,7 +157,7 @@ function Projects() {
                     src={project.image}
                     alt={project.title}
                     className="project-image"
-                    style={{ height: '192px', objectFit: 'cover' }}
+                    style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }}
                   />
                   <div className="image-overlay"></div>
                 </div>
@@ -261,11 +261,23 @@ function Projects() {
 
         .project-image-wrapper {
           position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 100%;
+          height: 192px;
           overflow: hidden;
           background-color: rgba(var(--secondary-rgb), 0.3);
         }
 
+        .project-image-wrapper picture {
+          display: block;
+          width: 100%;
+          height: 100%;
+        }
+
         .project-image {
+          display: block;
           transition: transform 0.5s ease;
         }
 

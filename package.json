@@ -2,7 +2,7 @@
   "name": "cagricansaracaydin.github.io",
   "homepage": "https://cagricansaracaydin.github.io",
   "version": "1.0.0",
-  "description": "Personal portfolio website of Cagri Can Saracaydin built with React.",
+  "description": "Portfolio of Cagri Can Saracaydin, Engineering, AI and Data Business Analyst.",
   "main": "src/index.js",
   "scripts": {
     "predeploy": "npm run build",

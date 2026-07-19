@@ -8,10 +8,10 @@ const ScrollToTop = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const skillsSection = document.getElementById('skills');
-      const skillsSectionOffset = skillsSection ? skillsSection.offsetTop : 0;
+      const experienceSection = document.getElementById('experience');
+      const experienceSectionOffset = experienceSection ? experienceSection.offsetTop : 0;
 
-      if (window.pageYOffset > skillsSectionOffset) {
+      if (window.pageYOffset > experienceSectionOffset) {
         setShowButton(true);
       } else {
         setShowButton(false);

@@ -5,7 +5,7 @@ import OptimizedImage from './OptimizedImage';
 const About = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [typedText, setTypedText] = useState('');
-  const fullText = " Commercial IT Analyst Intern @ Philip Morris International";
+  const fullText = " Engineering, AI & Data Business Analyst @ Deloitte";
 
   useEffect(() => {
     setIsVisible(true);
@@ -114,6 +114,12 @@ const About = () => {
         .typewriter {
           white-space: nowrap;
           overflow: hidden;
+        }
+        @media (max-width: 767px) {
+          .typewriter {
+            white-space: normal;
+            overflow: visible;
+          }
         }
         .background-animation {
           position: absolute;
