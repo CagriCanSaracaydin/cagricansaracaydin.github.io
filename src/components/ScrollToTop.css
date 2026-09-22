@@ -1,30 +1,64 @@
 .scroll-to-top {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 50px;
-    height: 50px;
-    background-color: var(--primary);
-    color: var(--primary-foreground);
-    border: none;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 24px;
-    cursor: pointer;
-    transition: opacity 0.4s, visibility 0.4s, background-color 0.3s, transform 0.3s;
-    z-index: 1000;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  z-index: 1000;
+  right: 22px;
+  bottom: 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  color: #243c55;
+  border: 1px solid rgba(255, 255, 255, 0.74);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.17);
+  box-shadow:
+    0 10px 28px rgba(27, 57, 89, 0.17),
+    inset 0 1px 0 rgba(255, 255, 255, 0.88),
+    inset 0 -1px 0 rgba(90, 130, 170, 0.14);
+  cursor: pointer;
+  -webkit-backdrop-filter: blur(3px) saturate(130%);
+  backdrop-filter: blur(3px) saturate(130%);
+}
+
+.scroll-to-top:hover {
+  color: #2866d5;
+  transform: translateY(-3px);
+}
+
+.scroll-to-top:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 3px;
+}
+
+.dark .scroll-to-top {
+  color: #f3f7ff;
+  border-color: rgba(231, 247, 255, 0.32);
+  background: rgba(229, 244, 255, 0.1);
+  box-shadow:
+    0 10px 28px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.28),
+    inset 0 -1px 0 rgba(176, 216, 242, 0.1);
+}
+
+.dark .scroll-to-top:hover { color: #94d9ee; }
+
+@media (max-width: 700px) {
+  .scroll-to-top {
+    right: 16px;
+    bottom: 16px;
+    width: 46px;
+    height: 46px;
   }
-  
-  .scroll-to-top:hover {
-    background-color: var(--accent);
-    color: var(--accent-foreground);
-    transform: translateY(-3px);
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .scroll-to-top {
+    background: #f4f8fc;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
   }
-  
-  .scroll-to-top:focus {
-    outline: 2px solid var(--ring);
-    outline-offset: 2px;
-  }
+
+  .dark .scroll-to-top { background: #263244; }
+}

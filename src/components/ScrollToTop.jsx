@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { FaArrowUp } from 'react-icons/fa';
+import { ArrowUp } from 'lucide-react';
 import './ScrollToTop.css';
 
-// ScrollToTop component to display a button that scrolls the page to the top
 const ScrollToTop = () => {
   const [showButton, setShowButton] = useState(false);
 
@@ -18,6 +17,7 @@ const ScrollToTop = () => {
       }
     };
 
+    handleScroll();
     window.addEventListener('scroll', handleScroll);
 
     return () => {
@@ -36,11 +36,12 @@ const ScrollToTop = () => {
     <>
       {showButton && (
         <button
+          type="button"
           className="scroll-to-top"
           onClick={scrollToTop}
           aria-label="Scroll to Top"
         >
-          <FaArrowUp />
+          <ArrowUp size={21} strokeWidth={1.9} aria-hidden="true" />
         </button>
       )}
     </>
