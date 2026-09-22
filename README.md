@@ -4,19 +4,19 @@ React portfolio for Cagri Can Saracaydin, published at [cagricansaracaydin.githu
 
 ## Local Development
 
-Node.js 18 or 20 LTS is recommended.
+Use Node.js 22.12+ (22.x) or 24.x for the build and test tools.
 
 ```bash
 npm install
 npm start
 ```
 
-The development server runs at `http://localhost:3000` with hot reload.
+The Vite development server runs at `http://localhost:5173` with hot reload.
 
 ## Validation
 
 ```bash
-npm test           # Interactive Jest watch mode
+npm test           # Interactive Vitest watch mode
 npm run test:ci    # Run the test suite once
 npm run build      # Create an optimized production bundle
 npm run serve      # Serve build/ at http://localhost:5000
@@ -24,7 +24,7 @@ npm run serve      # Serve build/ at http://localhost:5000
 
 ## Content and Assets
 
-Portfolio content is stored directly in the components under `src/components/`. Update the matching metadata in `public/index.html` and `public/sitemap.xml` when experience or education changes.
+Portfolio content is stored directly in the components under `src/components/`. Update the matching metadata in `index.html` and `public/sitemap.xml` when experience or education changes.
 
 Components serve committed assets from `public/images/optimized/` through `OptimizedImage`. To replace images:
 
@@ -41,4 +41,4 @@ Downloadable resumes and certificates live in `src/files/` and are bundled with 
 npm run deploy
 ```
 
-The deploy command builds the application and publishes `build/` to the `gh-pages` branch. The Google Analytics measurement ID is configured in `public/index.html`; the optional `REACT_APP_ANALYTICS_ENDPOINT` build variable can receive Web Vitals and must not contain secrets.
+The deploy command builds the application and publishes `build/` to the `gh-pages` branch. The Google Analytics measurement ID is configured in `index.html`; the optional `VITE_ANALYTICS_ENDPOINT` build variable can receive Web Vitals and must not contain secrets.

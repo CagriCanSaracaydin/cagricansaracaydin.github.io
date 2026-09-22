@@ -4,7 +4,8 @@
  * expect(element).toHaveTextContent(/react/i)
  * learn more: https://github.com/testing-library/jest-dom
  */
-import '@testing-library/jest-dom';
+import '@testing-library/jest-dom/vitest';
+import { vi } from 'vitest';
 
 Object.defineProperty(window, 'matchMedia', {
   writable: true,
@@ -22,5 +23,5 @@ Object.defineProperty(window, 'matchMedia', {
 
 Object.defineProperty(window, 'scrollTo', {
   writable: true,
-  value: jest.fn(),
+  value: vi.fn(),
 });

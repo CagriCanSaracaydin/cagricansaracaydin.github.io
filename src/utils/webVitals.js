@@ -13,7 +13,7 @@ import { getCLS, getFID, getFCP, getLCP, getTTFB } from 'web-vitals';
 
 function sendToAnalytics(metric) {
   // Log to console in development
-  if (process.env.NODE_ENV === 'development') {
+  if (import.meta.env.DEV) {
     console.log('📊 Web Vital:', metric);
   }
 
@@ -30,8 +30,8 @@ function sendToAnalytics(metric) {
   }
 
   // Example: Custom analytics endpoint
-  if (process.env.REACT_APP_ANALYTICS_ENDPOINT) {
-    fetch(process.env.REACT_APP_ANALYTICS_ENDPOINT, {
+  if (import.meta.env.VITE_ANALYTICS_ENDPOINT) {
+    fetch(import.meta.env.VITE_ANALYTICS_ENDPOINT, {
       method: 'POST',
       body: JSON.stringify({
         metric: metric.name,
@@ -80,7 +80,7 @@ export function initWebVitals() {
   getTTFB(sendToAnalytics);
 
   // Log initialization in development
-  if (process.env.NODE_ENV === 'development') {
+  if (import.meta.env.DEV) {
     console.log('🚀 Web Vitals monitoring initialized');
   }
 }
