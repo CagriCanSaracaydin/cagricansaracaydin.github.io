@@ -1,9 +1,0 @@
-# https://www.robotstxt.org/robotstxt.html
-User-agent: *
-Allow: /
-
-# Sitemap
-Sitemap: https://cagricansaracaydin.github.io/sitemap.xml
-
-# Crawl-delay
-Crawl-delay: 10
