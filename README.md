@@ -19,6 +19,8 @@ The Vite development server runs at `http://localhost:5173` with hot reload.
 npm test           # Interactive Vitest watch mode
 npm run test:ci    # Run the test suite once
 npm run build      # Create an optimized production bundle
+npx playwright install chromium # Install the browser for local smoke tests
+npm run test:smoke # Check the built site in Chromium
 npm run serve      # Serve build/ at http://localhost:5000
 ```
 
