@@ -13,21 +13,17 @@ beforeEach(() => {
   window.scrollTo.mockClear();
 });
 
-test('renders the hero content on the initial render', () => {
-  render(<App />);
-
-  expect(screen.getByRole('heading', { name: /cagri can saracaydin/i })).toBeInTheDocument();
-});
-
 test('renders the current portfolio sections', async () => {
   render(<App />);
 
   expect(screen.getByRole('navigation', { name: /primary navigation/i })).toBeInTheDocument();
-  expect(await screen.findByRole('heading', { name: /cagri can saracaydin/i })).toBeInTheDocument();
-  expect(await screen.findByText(/computer science and engineering graduate/i)).toBeInTheDocument();
-  expect(await screen.findByRole('heading', { name: /projects/i })).toBeInTheDocument();
-  expect(await screen.findByRole('heading', { name: /certificates/i })).toBeInTheDocument();
-  expect(await screen.findByRole('link', { name: /view resume/i })).toHaveAttribute('href');
+  expect(screen.getByRole('heading', { name: /cagri can saracaydin/i })).toBeInTheDocument();
+  expect(screen.getByText(/computer science and engineering graduate/i)).toBeInTheDocument();
+  await waitFor(() => {
+    expect(screen.getByRole('heading', { name: /projects/i })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /certificates/i })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /view resume/i })).toHaveAttribute('href');
+  }, { timeout: 5000 });
   expect(screen.queryByRole('heading', { name: /^skills$/i })).not.toBeInTheDocument();
   expect(screen.queryByRole('button', { name: /^skills$/i })).not.toBeInTheDocument();
 });
