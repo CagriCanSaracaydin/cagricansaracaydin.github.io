@@ -1,11 +1,11 @@
-import { getCLS, getFID, getFCP, getLCP, getTTFB } from 'web-vitals';
+import { onCLS, onINP, onFCP, onLCP, onTTFB } from 'web-vitals';
 
 /**
  * Web Vitals Monitoring
  * 
  * Tracks Core Web Vitals and sends them to analytics
  * - CLS: Cumulative Layout Shift
- * - FID: First Input Delay  
+ * - INP: Interaction to Next Paint
  * - FCP: First Contentful Paint
  * - LCP: Largest Contentful Paint
  * - TTFB: Time to First Byte
@@ -55,7 +55,7 @@ function sendToAnalytics(metric) {
 function getMetricRating(metric) {
   const thresholds = {
     CLS: { good: 0.1, needsImprovement: 0.25 },
-    FID: { good: 100, needsImprovement: 300 },
+    INP: { good: 200, needsImprovement: 500 },
     FCP: { good: 1800, needsImprovement: 3000 },
     LCP: { good: 2500, needsImprovement: 4000 },
     TTFB: { good: 800, needsImprovement: 1800 },
@@ -73,11 +73,11 @@ function getMetricRating(metric) {
  * Initialize Web Vitals monitoring
  */
 export function initWebVitals() {
-  getCLS(sendToAnalytics);
-  getFID(sendToAnalytics);
-  getFCP(sendToAnalytics);
-  getLCP(sendToAnalytics);
-  getTTFB(sendToAnalytics);
+  onCLS(sendToAnalytics);
+  onINP(sendToAnalytics);
+  onFCP(sendToAnalytics);
+  onLCP(sendToAnalytics);
+  onTTFB(sendToAnalytics);
 
   // Log initialization in development
   if (import.meta.env.DEV) {
