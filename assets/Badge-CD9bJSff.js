@@ -1,1 +1,0 @@
-import{a as e,i as t,l as n,o as r,s as i}from"./Container-D0iNxU27.js";var a=n(e()),o=n(i()),s=r(),c=o.forwardRef(({bsPrefix:e,bg:n=`primary`,pill:r=!1,text:i,className:o,as:c=`span`,...l},u)=>{let d=t(e,`badge`);return(0,s.jsx)(c,{ref:u,...l,className:(0,a.default)(o,d,r&&`rounded-pill`,i&&`text-${i}`,n&&`bg-${n}`)})});c.displayName=`Badge`;export{c as t};
