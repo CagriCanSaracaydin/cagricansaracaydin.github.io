@@ -13,6 +13,12 @@ beforeEach(() => {
   window.scrollTo.mockClear();
 });
 
+test('renders the hero content on the initial render', () => {
+  render(<App />);
+
+  expect(screen.getByRole('heading', { name: /cagri can saracaydin/i })).toBeInTheDocument();
+});
+
 test('renders the current portfolio sections', async () => {
   render(<App />);
 

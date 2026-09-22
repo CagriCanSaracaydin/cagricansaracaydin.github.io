@@ -5,9 +5,9 @@ import { ThemeProvider } from './contexts/ThemeContext';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
+import About from './components/About';
 
-// Lazy load non-critical components for code splitting
-const About = lazy(() => import('./components/About'));
+// Keep the hero available immediately; split the lower sections into separate chunks.
 const Experience = lazy(() => import('./components/Experience'));
 const Projects = lazy(() => import('./components/Projects'));
 const Education = lazy(() => import('./components/Education'));
@@ -33,18 +33,15 @@ const LoadingFallback = () => (
 
 /**
  * Optimized App component with code splitting and lazy loading
- * - Critical components (Navbar, Footer) load immediately
- * - Below-fold components load on demand
- * - Reduces initial bundle size by ~70%
+ * - The hero and navigation render on the initial pass.
+ * - Lower sections are split into separate chunks, then rendered on this page.
  */
 function App() {
   return (
     <ThemeProvider>
       <Navbar />
       <main>
-        <Suspense fallback={<LoadingFallback />}>
-          <About />
-        </Suspense>
+        <About />
         <Suspense fallback={<LoadingFallback />}>
           <Experience />
         </Suspense>
