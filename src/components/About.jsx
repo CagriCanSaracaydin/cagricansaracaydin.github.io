@@ -1,4 +1,3 @@
-import React from 'react';
 import { ArrowUpRight, Github, Linkedin, Mail, MapPin } from 'lucide-react';
 import OptimizedImage from './OptimizedImage';
 import './About.css';
@@ -51,6 +50,8 @@ const About = () => (
             className="about__portrait"
             width="877"
             height="812"
+            webpSrcSet="/images/optimized/hero-small.webp 400w, /images/optimized/hero-medium.webp 800w, /images/optimized/hero.webp 877w"
+            sizes="(max-width: 480px) calc(100vw - 58px), 420px"
             priority
           />
         </div>

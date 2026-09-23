@@ -1,4 +1,3 @@
-import React from 'react';
 import { ArrowUpRight, Mail } from 'lucide-react';
 import './Contact.css';
 

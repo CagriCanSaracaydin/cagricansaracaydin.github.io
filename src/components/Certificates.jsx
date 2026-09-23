@@ -1,4 +1,3 @@
-import React from 'react';
 import { ArrowUpRight, Award } from 'lucide-react';
 import OptimizedImage from './OptimizedImage';
 import './Certificates.css';

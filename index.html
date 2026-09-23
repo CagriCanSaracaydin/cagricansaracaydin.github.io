@@ -2,16 +2,19 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PDNGF8WWF6"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-PDNGF8WWF6');
-    </script>
+    <meta http-equiv="Content-Security-Policy" content="
+      default-src 'self';
+      base-uri 'self';
+      object-src 'none';
+      form-action 'self';
+      frame-src 'none';
+      script-src 'self' https://www.googletagmanager.com __CSP_JSON_LD_HASH__;
+      style-src 'self' https://fonts.googleapis.com __CSP_CRITICAL_CSS_HASH__;
+      font-src 'self' https://fonts.gstatic.com;
+      img-src 'self' data: https://www.googletagmanager.com https://*.google-analytics.com;
+      connect-src 'self' https://www.googletagmanager.com https://*.google-analytics.com https://*.google.com;
+    " />
+    <link rel="preload" as="image" href="/images/optimized/hero.webp" type="image/webp" imagesrcset="/images/optimized/hero-small.webp 400w, /images/optimized/hero-medium.webp 800w, /images/optimized/hero.webp 877w" imagesizes="(max-width: 480px) calc(100vw - 58px), 420px" fetchpriority="high" />
     
     <!-- External font connection hints -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />

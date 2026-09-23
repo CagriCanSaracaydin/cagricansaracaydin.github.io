@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from 'react';
+import { lazy, Suspense } from 'react';
 import { ThemeProvider } from './contexts/ThemeContext';
 
 // Critical components loaded immediately
@@ -16,15 +16,7 @@ const Contact = lazy(() => import('./components/Contact'));
 
 // Loading fallback component
 const LoadingFallback = () => (
-  <div 
-    style={{ 
-      display: 'flex', 
-      justifyContent: 'center', 
-      alignItems: 'center', 
-      minHeight: '200px',
-      color: 'var(--muted-foreground)'
-    }}
-  >
+  <div className="loading-fallback">
     <div className="spinner-border" role="status">
       <span className="visually-hidden">Loading...</span>
     </div>

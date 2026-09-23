@@ -81,7 +81,7 @@ async function optimizeImage(imagePath, filename) {
         avifBuffer
       );
       console.log(`   ✅ AVIF: ${(avifBuffer.length / 1024).toFixed(2)} KB (${Math.round(100 - (avifBuffer.length / imageBuffer.length * 100))}% reduction)`);
-    } catch (avifError) {
+    } catch {
       console.log(`   ⚠️  AVIF: Not supported (install libavif)`);
     }
     

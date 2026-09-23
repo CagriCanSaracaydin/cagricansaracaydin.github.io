@@ -17,6 +17,7 @@ The Vite development server runs at `http://localhost:5173` with hot reload.
 
 ```bash
 npm test           # Interactive Vitest watch mode
+npm run lint       # Check JavaScript and React rules
 npm run test:ci    # Run the test suite once
 npm run build      # Create an optimized production bundle
 npx playwright install chromium # Install the browser for local smoke tests
@@ -43,4 +44,4 @@ Downloadable resumes and certificates live in `src/files/` and are bundled with 
 npm run deploy
 ```
 
-The deploy command builds the application and publishes `build/` to the `gh-pages` branch. The Google Analytics measurement ID is configured in `index.html`; the optional `VITE_ANALYTICS_ENDPOINT` build variable can receive Web Vitals and must not contain secrets.
+The deploy command builds the application and publishes `build/` to the `gh-pages` branch. The Google Analytics measurement ID is configured in `src/utils/analytics.js`; its script loads after the page load event. The Content Security Policy in `index.html` restricts resource origins, and Vite hashes the inline structured data and critical CSS during the build. The optional `VITE_ANALYTICS_ENDPOINT` build variable can receive Web Vitals and must not contain secrets. An external endpoint also needs its origin added to the policy's `connect-src` directive.

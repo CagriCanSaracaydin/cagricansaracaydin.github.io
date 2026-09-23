@@ -76,6 +76,14 @@
 }
 
 /* Global Styles */
+.loading-fallback {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+  color: var(--muted-foreground);
+}
+
 *,
 *::before,
 *::after {

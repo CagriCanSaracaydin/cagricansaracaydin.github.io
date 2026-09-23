@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { ArrowUpRight, Github, Layers3 } from 'lucide-react';
 import OptimizedImage from './OptimizedImage';
 import './Projects.css';
@@ -73,6 +73,11 @@ const projects = [
   },
 ];
 
+const projectWebpSrcSet = (src) => {
+  const base = src.slice(0, src.lastIndexOf('.'));
+  return `${base}-thumbnail.webp 150w, ${base}-small.webp 400w, ${base}-medium.webp 800w, ${base}.webp 1024w`;
+};
+
 function Projects({ items = projects }) {
   const [activeFilter, setActiveFilter] = useState('all');
   const categories = ['all', ...new Set(items.map((project) => project.category).filter(Boolean))];
@@ -113,6 +118,8 @@ function Projects({ items = projects }) {
                     className="projects__image"
                     width="1024"
                     height="1024"
+                    webpSrcSet={projectWebpSrcSet(project.image)}
+                    sizes="(max-width: 620px) 152px, 164px"
                   />
                 ) : (
                   <div className="projects__media-placeholder" aria-hidden="true">

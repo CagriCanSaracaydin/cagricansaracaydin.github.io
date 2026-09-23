@@ -1,4 +1,3 @@
-import React from 'react';
 import { CalendarDays, MapPin } from 'lucide-react';
 import OptimizedImage from './OptimizedImage';
 import './Education.css';

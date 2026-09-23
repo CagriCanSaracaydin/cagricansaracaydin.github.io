@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { CalendarDays, MapPin } from 'lucide-react';
 import OptimizedImage from './OptimizedImage';
 import './Experience.css';
