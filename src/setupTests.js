@@ -25,3 +25,9 @@ Object.defineProperty(window, 'scrollTo', {
   writable: true,
   value: vi.fn(),
 });
+
+// jsdom has no canvas backend; returning null keeps decorative canvases quiet in tests.
+Object.defineProperty(HTMLCanvasElement.prototype, 'getContext', {
+  writable: true,
+  value: () => null,
+});

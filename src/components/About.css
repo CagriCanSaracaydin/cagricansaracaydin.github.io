@@ -2,8 +2,20 @@
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  padding: clamp(48px, 7vw, 94px) 24px clamp(70px, 9vw, 120px);
+  padding: clamp(48px, 7vw, 94px) 24px clamp(160px, 15vw, 196px);
   background: radial-gradient(circle at 78% 43%, rgba(102, 177, 225, 0.12), transparent 34%), var(--background);
+}
+
+.about__skyline {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  height: 132px;
+  opacity: 0.8;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  pointer-events: none;
 }
 
 .about__inner {
@@ -151,6 +163,8 @@
   background: radial-gradient(circle at 78% 43%, rgba(62, 139, 181, 0.16), transparent 34%), var(--background);
 }
 
+.dark .about__skyline { opacity: 0.72; }
+
 .dark .about__link--primary {
   color: #102130;
   background: #9bd9e8;
@@ -194,7 +208,8 @@
 }
 
 @media (max-width: 600px) {
-  .about { padding: 44px 20px 78px; }
+  .about { padding: 44px 20px 124px; }
+  .about__skyline { height: 88px; }
   .about__name { font-size: clamp(2.9rem, 12vw, 4.3rem); }
   .about__actions { gap: 9px; }
 

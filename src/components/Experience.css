@@ -85,6 +85,7 @@
 }
 
 .experience__card {
+  position: relative;
   min-width: 0;
   padding: clamp(22px, 3vw, 32px);
   border: 1px solid rgba(137, 171, 199, 0.28);
@@ -292,4 +293,37 @@
     -webkit-backdrop-filter: none;
     backdrop-filter: none;
   }
+}
+
+/* Easter egg: Tombili naps on the top edge of the newest card. */
+.tombili {
+  position: absolute;
+  right: 28px;
+  bottom: calc(100% - 5px);
+  line-height: 0;
+  pointer-events: none;
+}
+
+.tombili__cat {
+  width: 96px;
+  height: 48px;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.tombili__bubble {
+  position: absolute;
+  right: 6px;
+  bottom: 38px;
+  padding: 4px 8px;
+  color: var(--foreground);
+  border: 2px solid currentColor;
+  background: var(--card);
+  box-shadow: 3px 3px 0 currentColor;
+  font-size: 0.72rem;
+  font-weight: 700;
+  line-height: 1;
+  white-space: nowrap;
 }

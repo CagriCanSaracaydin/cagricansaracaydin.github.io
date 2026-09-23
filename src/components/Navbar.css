@@ -128,6 +128,15 @@
   cursor: pointer;
 }
 
+.theme-toggle__scene {
+  display: block;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
 .site-nav .theme-toggle:hover,
 .site-nav__menu-button:hover {
   color: var(--nav-accent);

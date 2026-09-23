@@ -1,9 +1,11 @@
 import { ArrowUpRight, Github, Linkedin, Mail, MapPin } from 'lucide-react';
+import BosphorusSkyline from './BosphorusSkyline';
 import OptimizedImage from './OptimizedImage';
 import './About.css';
 
 const About = () => (
   <section id="about" className="about">
+    <BosphorusSkyline />
     <div className="about__inner">
       <div className="about__content">
         <h1 className="about__name">Cagri Can Saracaydin</h1>

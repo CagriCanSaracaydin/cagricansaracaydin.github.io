@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { CalendarDays, MapPin } from 'lucide-react';
 import OptimizedImage from './OptimizedImage';
+import Tombili from './Tombili';
 import './Experience.css';
 
 // Array of experience data
@@ -98,6 +99,7 @@ const Experience = () => {
             >
               <div className="experience__year" aria-hidden="true">{exp.year}</div>
               <div className="experience__card">
+                {index === 0 && <Tombili />}
                 <div className="experience__heading">
                   <div className="experience__logo">
                     {exp.logo ? (

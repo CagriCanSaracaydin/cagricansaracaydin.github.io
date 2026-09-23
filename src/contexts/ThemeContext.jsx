@@ -10,6 +10,9 @@ export const useTheme = () => {
   return context;
 };
 
+/** Theme for decorative components that may render outside the provider (e.g. in isolated tests). */
+export const useOptionalTheme = () => useContext(ThemeContext);
+
 /** Keeps system preference separate from an explicit, persisted selection. */
 export const ThemeProvider = ({ children }) => {
   const getSystemTheme = useCallback(
