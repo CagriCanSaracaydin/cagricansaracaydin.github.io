@@ -1,7 +1,7 @@
 import React from 'react';
-import { Card, Container, Row, Col, Button, Badge } from 'react-bootstrap';
-import { Award, ExternalLink } from 'lucide-react';
+import { ArrowUpRight, Award } from 'lucide-react';
 import OptimizedImage from './OptimizedImage';
+import './Certificates.css';
 
 import McKinseyLink from '../files/Forward.pdf';
 import harvardLink from '../files/CagriCanSaracaydin-CS50Certificate.pdf';
@@ -9,6 +9,24 @@ import sabanciLink from '../files/CagriCanSaracaydin-CertificateOfAchievement.pd
 
 // Array of certificate data
 const certificates = [
+  {
+    organization: 'Amazon Web Services',
+    title: 'AWS Certified AI Practitioner',
+    description: 'Foundational knowledge of AI, machine learning, and generative AI concepts and responsible use on AWS.',
+    image: '/images/optimized/aws-ai-practitioner-badge.png',
+    imageAlt: 'AWS Certified AI Practitioner badge',
+    skills: ['AI & ML', 'Generative AI', 'Responsible AI'],
+    link: 'https://www.credly.com/badges/421388ca-e006-4782-9867-7c747838d777/public_url',
+  },
+  {
+    organization: 'Amazon Web Services',
+    title: 'AWS Certified Cloud Practitioner',
+    description: 'Foundational understanding of AWS Cloud concepts, services, and common use cases.',
+    image: '/images/optimized/aws-cloud-practitioner-badge.png',
+    imageAlt: 'AWS Certified Cloud Practitioner badge',
+    skills: ['Cloud Concepts', 'AWS Services', 'Security'],
+    link: 'https://www.credly.com/badges/92e20b3d-6823-478b-beab-c580ccc78dbf/public_url',
+  },
   {
     organization: 'McKinsey & Company',
     title: 'McKinsey Forward Program',
@@ -35,196 +53,48 @@ const certificates = [
   },
 ];
 
-// Certificates component
 function Certificates() {
   return (
-    <section 
-      id="certificates" 
-      className="certificates-section"
-      style={{ 
-        backgroundColor: 'rgba(var(--secondary-rgb), 0.3)',
-        padding: '4rem 1rem'
-      }}
-    >
-      <Container style={{ maxWidth: '1400px' }}>
-        <div className="mb-5">
-          <h2 style={{ 
-            fontSize: 'clamp(2rem, 5vw, 3rem)', 
-            fontWeight: 'bold', 
-            color: 'var(--foreground)',
-            marginBottom: '1rem'
-          }}>
-            Certificates
-          </h2>
-          <p style={{ 
-            fontSize: '1.125rem', 
-            color: 'var(--muted-foreground)', 
-            maxWidth: '42rem'
-          }}>
-            Professional certifications and courses that enhance my technical expertise and professional skills.
-          </p>
+    <section id="certificates" className="certificates">
+      <div className="certificates__inner">
+        <div className="certificates__intro">
+          <h2>Certificates</h2>
+          <p>Courses and programs that broaden my technical and professional practice.</p>
         </div>
 
-        <Row className="g-4 g-md-5">
-          {certificates.map((cert, index) => (
-            <Col key={index} xs={12} md={6} lg={4}>
-              <Card 
-                className="certificate-card h-100"
-                style={{ 
-                  backgroundColor: 'var(--card)',
-                  borderColor: 'var(--border)',
-                  borderRadius: 'var(--radius)',
-                  border: '1px solid var(--border)',
-                  transition: 'all 0.3s ease',
-                  overflow: 'hidden'
-                }}
-              >
-                <Card.Body className="p-4 d-flex flex-column">
-                  {/* Logo Section */}
-                  <div className="mb-4 d-flex justify-content-center">
-                    <div className="logo-wrapper">
-                      <OptimizedImage
-                        src={cert.image}
-                        alt={`${cert.organization} logo`}
-                        className={`certificate-logo ${
-                          cert.organization === 'Harvard University' ? 'harvard-logo' : 
-                          cert.organization === 'McKinsey & Company' ? 'mckinsey-logo' :
-                          cert.organization === 'Sabanci University' ? 'sabanci-logo' : ''
-                        }`}
-                      />
-                    </div>
+        <div className="certificates__grid">
+          {certificates.map((cert) => (
+            <article className="certificates__card" key={cert.title}>
+              <div className="certificates__logo">
+                <OptimizedImage src={cert.image} alt={cert.imageAlt ?? `${cert.organization} logo`} />
+              </div>
+
+              <div className="certificates__content">
+                <p className="certificates__organization">{cert.organization}</p>
+                <h3>{cert.title}</h3>
+                <p className="certificates__description">{cert.description}</p>
+
+                <div className="certificates__bottom">
+                  <div className="certificates__topics" aria-label="Topics covered">
+                    {cert.skills.map((skill) => <span key={skill}>{skill}</span>)}
                   </div>
-
-                  {/* Content Section */}
-                  <div className="flex-grow-1 d-flex flex-column">
-                    <div className="mb-3">
-                      <h3 className="cert-title" style={{ 
-                        fontSize: '1.25rem', 
-                        fontWeight: 'bold', 
-                        color: 'var(--foreground)',
-                        marginBottom: '0.5rem',
-                        transition: 'color 0.3s ease'
-                      }}>
-                        {cert.title}
-                      </h3>
-                      <p style={{ 
-                        fontSize: '0.875rem', 
-                        color: 'var(--muted-foreground)',
-                        lineHeight: '1.6',
-                        marginBottom: '1rem'
-                      }}>
-                        {cert.description}
-                      </p>
-                    </div>
-
-                    {/* Skills/Topics */}
-                    <div className="d-flex flex-wrap gap-2 mb-4">
-                      {cert.skills.map((skill, skillIndex) => (
-                        <Badge
-                          key={skillIndex}
-                          bg=""
-                          className="skill-badge"
-                          style={{ 
-                            backgroundColor: 'var(--secondary) !important',
-                            color: 'var(--secondary-foreground) !important',
-                            fontSize: '0.75rem',
-                            padding: '0.25rem 0.75rem',
-                            fontWeight: '500',
-                            transition: 'all 0.3s ease'
-                          }}
-                        >
-                          {skill}
-                        </Badge>
-                      ))}
-                    </div>
-
-                    {/* Button */}
-                    <Button
-                      variant="outline"
-                      href={cert.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mt-auto view-cert-btn d-flex align-items-center justify-content-center gap-2"
-                      style={{ 
-                        width: '100%',
-                        backgroundColor: 'transparent',
-                        color: 'var(--foreground)',
-                        border: '2px solid var(--border)',
-                        padding: '0.5rem 1rem',
-                        borderRadius: 'var(--radius)',
-                        transition: 'all 0.3s ease',
-                        fontWeight: '500'
-                      }}
-                    >
-                      <Award size={16} />
-                      View Certificate
-                      <ExternalLink size={16} className="external-icon" style={{ opacity: 0, transition: 'opacity 0.3s ease' }} />
-                    </Button>
-                  </div>
-                </Card.Body>
-              </Card>
-            </Col>
+                  <a
+                    className="certificates__link"
+                    href={cert.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`View ${cert.title} certificate`}
+                  >
+                    <Award size={17} aria-hidden="true" />
+                    View certificate
+                    <ArrowUpRight size={16} aria-hidden="true" />
+                  </a>
+                </div>
+              </div>
+            </article>
           ))}
-        </Row>
-      </Container>
-      
-      <style>{`
-        .certificates-section .logo-wrapper {
-          width: 128px;
-          height: 128px;
-          border-radius: 8px;
-          background-color: rgba(var(--secondary-rgb), 0.3);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          overflow: hidden;
-          border: 1px solid rgba(var(--border-rgb), 0.5);
-          transition: transform 0.3s ease;
-        }
-        .certificates-section .certificate-card:hover .logo-wrapper {
-          transform: scale(1.05);
-        }
-        .certificate-logo {
-          width: 100%;
-          height: 100%;
-          object-fit: contain;
-          padding: 1rem;
-        }
-        .harvard-logo {
-          padding: 0.5rem;
-          transform: scale(1.3);
-        }
-        .mckinsey-logo {
-          padding: 0.5rem;
-          transform: scale(1.2);
-        }
-        .sabanci-logo {
-          padding: 0.5rem;
-          transform: scale(1.2);
-        }
-        .certificate-card {
-          transition: all 0.3s ease;
-        }
-        .certificate-card:hover {
-          box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
-          border-color: rgba(var(--primary-rgb), 0.5) !important;
-        }
-        .certificate-card:hover .cert-title {
-          color: var(--primary) !important;
-        }
-        .skill-badge:hover {
-          background-color: rgba(var(--accent-rgb), 0.2) !important;
-          color: var(--accent) !important;
-        }
-        .view-cert-btn:hover {
-          background-color: var(--primary) !important;
-          color: var(--primary-foreground) !important;
-          border-color: var(--primary) !important;
-        }
-        .view-cert-btn:hover .external-icon {
-          opacity: 1 !important;
-        }
-      `}</style>
+        </div>
+      </div>
     </section>
   );
 }

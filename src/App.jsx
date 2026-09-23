@@ -12,7 +12,7 @@ const Experience = lazy(() => import('./components/Experience'));
 const Projects = lazy(() => import('./components/Projects'));
 const Education = lazy(() => import('./components/Education'));
 const Certificates = lazy(() => import('./components/Certificates'));
-const Resume = lazy(() => import('./components/Resume'));
+const Contact = lazy(() => import('./components/Contact'));
 
 // Loading fallback component
 const LoadingFallback = () => (
@@ -55,7 +55,7 @@ function App() {
           <Certificates />
         </Suspense>
         <Suspense fallback={<LoadingFallback />}>
-          <Resume />
+          <Contact />
         </Suspense>
       </main>
       <Footer />

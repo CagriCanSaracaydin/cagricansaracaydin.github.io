@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Container, Card, Badge } from 'react-bootstrap';
-import { MapPin, Calendar } from 'lucide-react';
+import { CalendarDays, MapPin } from 'lucide-react';
 import OptimizedImage from './OptimizedImage';
+import './Experience.css';
 
 // Array of experience data
 const experiences = [
@@ -67,274 +67,77 @@ const experiences = [
   },
 ];
 
-// Experience component
 const Experience = () => {
   const [activeIndex, setActiveIndex] = useState(0);
 
+  const selectExperience = (index) => setActiveIndex(index);
+
   return (
-    <section id="experience" className="py-5" style={{ backgroundColor: 'var(--background)', padding: '4rem 1rem' }}>
-      <Container style={{ maxWidth: '1400px' }}>
-        <h2 className="mb-2" style={{ 
-          color: 'var(--foreground)', 
-          fontSize: 'clamp(2rem, 5vw, 3rem)', 
-          fontWeight: 'bold',
-          textAlign: 'left'
-        }}>
-          Experience
-        </h2>
-        <p style={{ 
-          fontSize: '1.125rem', 
-          color: 'var(--muted-foreground)', 
-          marginBottom: '4rem', 
-          maxWidth: '42rem' 
-        }}>
-          A timeline of my professional journey and key contributions across various organizations.
-        </p>
-
-        <div style={{ position: 'relative' }}>
-          {/* Timeline vertical line */}
-          <div 
-            className="timeline-line d-none d-sm-block"
-            style={{
-              position: 'absolute',
-              left: '0',
-              top: '0',
-              bottom: '0',
-              width: '1px',
-              backgroundColor: 'var(--border)',
-            }}
-          />
-
-          <div>
-            {experiences.map((exp, index) => (
-              <div 
-                key={index} 
-                className="experience-item"
-                onClick={() => setActiveIndex(index)}
-                onKeyDown={(event) => {
-                  if (event.key === 'Enter' || event.key === ' ') {
-                    event.preventDefault();
-                    setActiveIndex(index);
-                  }
-                }}
-                role="button"
-                tabIndex={0}
-                aria-pressed={activeIndex === index}
-                style={{ 
-                  position: 'relative',
-                  marginBottom: index === experiences.length - 1 ? '0' : '3rem',
-                  cursor: 'pointer'
-                }}
-              >
-                {/* Year badge */}
-                <div 
-                  className="year-badge d-none d-sm-flex"
-                  style={{
-                    position: 'absolute',
-                    left: '0',
-                    top: '0',
-                    transform: 'translateX(-50%)',
-                    zIndex: 10,
-                    width: '64px',
-                    height: '64px',
-                    borderRadius: '50%',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    fontSize: '0.875rem',
-                    fontWeight: '600',
-                    backgroundColor: activeIndex === index ? 'var(--primary)' : 'var(--muted)',
-                    color: activeIndex === index ? 'var(--primary-foreground)' : 'var(--muted-foreground)',
-                    transition: 'all 0.3s ease',
-                    transform: activeIndex === index ? 'translateX(-50%) scale(1.1)' : 'translateX(-50%)',
-                    boxShadow: activeIndex === index ? '0 10px 15px -3px rgba(0, 0, 0, 0.1)' : 'none'
-                  }}
-                >
-                  {exp.year}
-                </div>
-
-                {/* Experience card */}
-                <div style={{ paddingLeft: '0' }}>
-                  <Card
-                    style={{
-                      backgroundColor: activeIndex === index ? 'var(--card)' : 'rgba(var(--card-rgb), 0.5)',
-                      borderColor: activeIndex === index ? 'rgba(var(--primary-rgb), 0.5)' : 'var(--border)',
-                      borderRadius: 'var(--radius)',
-                      transition: 'all 0.3s ease',
-                      boxShadow: activeIndex === index ? '0 10px 15px -3px rgba(0, 0, 0, 0.1)' : '0 1px 2px 0 rgba(0, 0, 0, 0.05)'
-                    }}
-                    className="experience-card"
-                  >
-                    <Card.Body className="p-4 p-md-5">
-                      {/* Mobile year badge */}
-                      <div className="d-sm-none mb-3">
-                        <Badge
-                          bg=""
-                          style={{
-                            backgroundColor: activeIndex === index ? 'var(--primary)' : 'var(--secondary)',
-                            color: activeIndex === index ? 'var(--primary-foreground)' : 'var(--secondary-foreground)',
-                            fontSize: '0.875rem',
-                            fontWeight: '600'
-                          }}
-                        >
-                          {exp.year}
-                        </Badge>
-                      </div>
-
-                      {/* Company header */}
-                      <div className={`d-flex align-items-start gap-3 ${
-                        exp.description.length > 0 || exp.skills.length > 0 ? 'mb-4 mb-md-5' : ''
-                      }`}>
-                        <div 
-                          style={{
-                            width: '120px',
-                            height: '120px',
-                            borderRadius: '8px',
-                            backgroundColor: 'rgba(var(--secondary-rgb), 0.5)',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            overflow: 'hidden',
-                            flexShrink: 0
-                          }}
-                        >
-                          {exp.logo ? (
-                            <OptimizedImage
-                              src={exp.logo}
-                              alt={`${exp.company} logo`}
-                              style={{
-                                width: '100%',
-                                height: '100%',
-                                objectFit: 'contain',
-                                padding: '12px'
-                              }}
-                            />
-                          ) : (
-                            <span style={{ color: 'var(--foreground)', fontWeight: 700 }}>
-                              Deloitte<span style={{ color: '#86bc25' }}>.</span>
-                            </span>
-                          )}
-                        </div>
-                        <div style={{ flex: 1, minWidth: 0 }}>
-                          <h3 className="mb-1" style={{ 
-                            fontSize: '1.25rem', 
-                            fontWeight: 'bold', 
-                            color: 'var(--foreground)' 
-                          }}>
-                            {exp.company}
-                          </h3>
-                          <p className="mb-2" style={{ 
-                            fontSize: '1rem', 
-                            fontWeight: '500', 
-                            color: 'var(--primary)' 
-                          }}>
-                            {exp.title}
-                          </p>
-                          <div className="d-flex flex-wrap gap-3" style={{ 
-                            fontSize: '0.875rem', 
-                            color: 'var(--muted-foreground)' 
-                          }}>
-                            <span className="d-flex align-items-center gap-1">
-                              <MapPin size={16} />
-                              {exp.location}
-                            </span>
-                            <span className="d-flex align-items-center gap-1">
-                              <Calendar size={16} />
-                              {exp.period}
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Description */}
-                      {exp.description.length > 0 && <ul className="mb-4 mb-md-5" style={{
-                        color: 'rgba(var(--foreground-rgb), 0.9)', 
-                        lineHeight: '1.6',
-                        paddingLeft: '0',
-                        listStyle: 'none'
-                      }}>
-                        {exp.description.map((bullet, bulletIndex) => (
-                          <li key={bulletIndex} className="d-flex gap-3 mb-3" style={{ fontSize: 'clamp(0.875rem, 2vw, 1rem)' }}>
-                            <span style={{ color: 'var(--accent)', marginTop: '0.375rem', flexShrink: 0 }}>•</span>
-                            <span>{bullet}</span>
-                          </li>
-                        ))}
-                      </ul>}
-
-                      {/* Skills */}
-                      {exp.skills.length > 0 && <div className="d-flex flex-wrap gap-2">
-                        {exp.skills.map((skill, skillIndex) => (
-                          <Badge
-                            key={skillIndex}
-                            bg=""
-                            style={{
-                              backgroundColor: 'var(--secondary)',
-                              color: 'var(--secondary-foreground)',
-                              fontSize: '0.75rem',
-                              fontWeight: '500'
-                            }}
-                          >
-                            {skill}
-                          </Badge>
-                        ))}
-                      </div>}
-                    </Card.Body>
-                  </Card>
-                </div>
-              </div>
-            ))}
-          </div>
+    <section id="experience" className="experience">
+      <div className="experience__inner">
+        <div className="experience__intro">
+          <h2>Experience</h2>
+          <p>A timeline of my professional journey and key contributions across various organizations.</p>
         </div>
-      </Container>
 
-      <style>{`
-        .experience-card:hover {
-          background-color: var(--card) !important;
-          box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1) !important;
-        }
+        <div className="experience__timeline">
+          {experiences.map((exp, index) => (
+            <div
+              key={`${exp.company}-${exp.period}`}
+              className={`experience__entry${activeIndex === index ? ' is-active' : ''}`}
+              role="button"
+              tabIndex={0}
+              aria-pressed={activeIndex === index}
+              onClick={() => selectExperience(index)}
+              onKeyDown={(event) => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                  event.preventDefault();
+                  selectExperience(index);
+                }
+              }}
+            >
+              <div className="experience__year" aria-hidden="true">{exp.year}</div>
+              <div className="experience__card">
+                <div className="experience__heading">
+                  <div className="experience__logo">
+                    {exp.logo ? (
+                      <OptimizedImage
+                        src={exp.logo}
+                        alt={`${exp.company} logo`}
+                        width="64"
+                        height="64"
+                      />
+                    ) : (
+                      <span className="experience__deloitte">Deloitte<span>.</span></span>
+                    )}
+                  </div>
+                  <div className="experience__identity">
+                    <h3>{exp.company}</h3>
+                    <p className="experience__title">{exp.title}</p>
+                  </div>
+                </div>
 
-        .year-badge:hover {
-          background-color: var(--secondary) !important;
-          transform: translateX(-50%) scale(1.05) !important;
-        }
+                <div className="experience__facts">
+                  <span><CalendarDays size={16} aria-hidden="true" />{exp.period}</span>
+                  <span><MapPin size={16} aria-hidden="true" />{exp.location}</span>
+                </div>
 
-        @media (min-width: 576px) {
-          .timeline-line {
-            left: 0 !important;
-          }
-          
-          .experience-item > div:last-child {
-            padding-left: 3rem !important;
-          }
-        }
+                {exp.description.length > 0 && (
+                  <ul className="experience__description">
+                    {exp.description.map((detail) => <li key={detail}>{detail}</li>)}
+                  </ul>
+                )}
 
-        @media (min-width: 768px) {
-          .timeline-line {
-            left: 50% !important;
-            transform: translateX(-50%);
-          }
-          
-          .experience-item:nth-child(even) > div:last-child {
-            margin-left: auto;
-            padding-left: 3rem !important;
-            padding-right: 0;
-          }
-          
-          .experience-item:nth-child(odd) > div:last-child {
-            margin-right: auto;
-            padding-right: 3rem !important;
-            padding-left: 0;
-          }
-          
-          .experience-item > div:last-child {
-            width: calc(50% - 1.5rem);
-          }
-          
-          .year-badge {
-            left: 50% !important;
-          }
-        }
-      `}</style>
+                {exp.skills.length > 0 && (
+                  <div className="experience__skills" aria-label="Skills used">
+                    {exp.skills.map((skill) => <span key={skill}>{skill}</span>)}
+                  </div>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
     </section>
   );
 };

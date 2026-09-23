@@ -22,7 +22,7 @@ test('renders the current portfolio sections', async () => {
   await waitFor(() => {
     expect(screen.getByRole('heading', { name: /projects/i })).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: /certificates/i })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: /view resume/i })).toHaveAttribute('href');
+    expect(screen.getByRole('link', { name: 'cagrisaracaydin@gmail.com' })).toHaveAttribute('href', 'mailto:cagrisaracaydin@gmail.com');
   }, { timeout: 5000 });
   expect(screen.queryByRole('heading', { name: /^skills$/i })).not.toBeInTheDocument();
   expect(screen.queryByRole('button', { name: /^skills$/i })).not.toBeInTheDocument();
@@ -45,6 +45,22 @@ test('filters projects by technology category', () => {
   expect(screen.getByText(/data analysis of commodity market/i)).toBeInTheDocument();
   expect(screen.queryByText(/search engine c\+\+ project/i)).not.toBeInTheDocument();
   expect(screen.getByRole('button', { name: 'Python' })).toHaveAttribute('aria-pressed', 'true');
+});
+
+test('shows a private corporate project without requiring an image or GitHub link', () => {
+  render(<Projects items={[{
+    id: 'internal-reporting',
+    title: 'Internal reporting platform',
+    description: 'Built an internal reporting workflow.',
+    organization: 'Example Company',
+    category: 'Corporate',
+    technologies: ['SQL'],
+  }]} />);
+
+  expect(screen.getByRole('heading', { name: 'Projects' })).toBeInTheDocument();
+  expect(screen.getByRole('heading', { name: 'Internal reporting platform' })).toBeInTheDocument();
+  expect(screen.getByRole('button', { name: 'Corporate' })).toBeInTheDocument();
+  expect(screen.queryByRole('link', { name: /GitHub/i })).not.toBeInTheDocument();
 });
 
 test('persists an explicit theme selection', async () => {

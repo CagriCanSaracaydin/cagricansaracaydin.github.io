@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
-import { Container, Row, Col, Card, Badge, Button } from 'react-bootstrap';
-import { FaGithub } from 'react-icons/fa';
-import { BiLinkExternal } from 'react-icons/bi';
+import { ArrowUpRight, Github, Layers3 } from 'lucide-react';
 import OptimizedImage from './OptimizedImage';
+import './Projects.css';
 
-// Array of project data
+// githubUrl, image, and organization are optional for future private or corporate projects.
 const projects = [
   {
     id: 1,
     title: 'Search Engine C++ Project (CS300)',
     description:
-      'Implemented advanced data structures and algorithms to optimize search engine performance. Performed comprehensive evaluations of speed and efficiency on searching algorithms and search techniques, significantly enhancing the effectiveness of information retrieval systems.',
+      'Built a C++ search engine using data structures and algorithms to improve information retrieval speed.',
     image: '/images/optimized/project1.png',
     technologies: ['C++', 'Data Structures', 'Algorithms'],
     category: 'C++',
@@ -21,7 +20,7 @@ const projects = [
     id: 2,
     title: 'Electronic Air-Hockey Project (CS303)',
     description:
-      'Engineered a dynamic system integrating LED and seven-segment display simulations for realistic puck movement and interactive player experiences. Collaborated effectively with a partner to design and implement the hardware simulation, emphasizing teamwork and technical proficiency in digital systems.',
+      'Designed a Verilog air-hockey simulation with puck movement, LEDs, and seven-segment score displays.',
     image: '/images/optimized/project2.png',
     technologies: ['Verilog HDL', 'Digital Systems', 'Hardware Design'],
     category: 'Verilog HDL',
@@ -32,7 +31,7 @@ const projects = [
     id: 3,
     title: 'Open-Source Project Whisky',
     description:
-      'Contributed over 100 English to Turkish translations, improving the gaming experience for Turkish speakers. Engaged with a global community of developers to support the Wine wrapper project, expanding the use of open-source software.',
+      'Contributed over 100 English-to-Turkish translations to the open-source Whisky app.',
     image: '/images/optimized/project3.png',
     technologies: ['Open Source', 'Translation', 'Community'],
     category: 'Other',
@@ -43,7 +42,7 @@ const projects = [
     id: 4,
     title: 'Data Analysis of Commodity Market',
     description:
-      'Analyzed commodity market trends from 2019 to 2024 across key commodities including natural gas, crude oil, precious metals, and cryptocurrencies. Utilized data cleaning, exploratory analysis, and machine learning models like KNN and Decision Trees to predict future price movements.',
+      'Analyzed 2019–2024 commodity trends and used machine learning to explore future price movements.',
     image: '/images/optimized/project4.png',
     technologies: ['Python', 'Machine Learning', 'Pandas'],
     category: 'Python',
@@ -54,7 +53,7 @@ const projects = [
     id: 5,
     title: 'SongSpot Backend API',
     description:
-      'Developed a robust backend API for SongSpot, facilitating song searches, comments, and ratings to enhance user interactions across a detailed music database.',
+      'Built a Java API for song search, comments, and ratings backed by MongoDB.',
     image: '/images/optimized/project5.png',
     technologies: ['Java', 'Spring Boot', 'MongoDB'],
     category: 'Java',
@@ -65,7 +64,7 @@ const projects = [
     id: 6,
     title: 'SongSpot Frontend Android',
     description:
-      'Built the SongSpot app\'s frontend with Java and Android SDK, offering a user-friendly mobile interface for exploring and interacting with a vast music database.',
+      'Built an Android app for exploring music and interacting with the SongSpot database.',
     image: '/images/optimized/project6.png',
     technologies: ['Java', 'Android SDK', 'Mobile Development'],
     category: 'Java',
@@ -74,267 +73,91 @@ const projects = [
   },
 ];
 
-const filterCategories = [
-  { name: 'All', value: 'all' },
-  { name: 'Python', value: 'Python' },
-  { name: 'C++', value: 'C++' },
-  { name: 'Java', value: 'Java' },
-  { name: 'Verilog HDL', value: 'Verilog HDL' },
-];
-
-// Projects component to display the projects section
-function Projects() {
+function Projects({ items = projects }) {
   const [activeFilter, setActiveFilter] = useState('all');
-
-  const filteredProjects =
-    activeFilter === 'all' ? projects : projects.filter((project) => project.category === activeFilter);
+  const categories = ['all', ...new Set(items.map((project) => project.category).filter(Boolean))];
+  const filteredProjects = activeFilter === 'all'
+    ? items
+    : items.filter((project) => project.category === activeFilter);
 
   return (
-    <section id="projects" className="py-5" style={{ backgroundColor: 'var(--background)', padding: '4rem 1rem' }}>
-      <Container style={{ maxWidth: '1400px' }}>
-        {/* Header */}
-        <h2 className="mb-2" style={{ 
-          color: 'var(--foreground)', 
-          fontSize: 'clamp(2rem, 5vw, 3rem)', 
-          fontWeight: 'bold',
-          textAlign: 'left'
-        }}>
-          Github Projects
-        </h2>
-        <p style={{ 
-          fontSize: '1.125rem', 
-          color: 'var(--muted-foreground)', 
-          marginBottom: '4rem', 
-          maxWidth: '42rem' 
-        }}>
-          A collection of my technical projects showcasing skills in software development, data science, and system design.
-        </p>
+    <section id="projects" className="projects">
+      <div className="projects__inner">
+        <div className="projects__intro">
+          <h2>Projects</h2>
+          <p>A selection of work across software development, data science, and system design.</p>
+        </div>
 
-        {/* Filter Buttons */}
-        <div className="d-flex flex-wrap justify-content-center gap-3 mb-5">
-          {filterCategories.map((category) => (
-            <Button
-              key={category.value}
-              onClick={() => setActiveFilter(category.value)}
-              aria-pressed={activeFilter === category.value}
-              variant={activeFilter === category.value ? 'primary' : 'outline-primary'}
-              className={`filter-btn ${activeFilter === category.value ? 'active' : ''}`}
-              style={
-                activeFilter === category.value
-                  ? {
-                      backgroundColor: 'var(--primary)',
-                      borderColor: 'var(--primary)',
-                      color: 'var(--primary-foreground)',
-                    }
-                  : {
-                      backgroundColor: 'transparent',
-                      borderColor: 'var(--primary)',
-                      color: 'var(--primary)',
-                    }
-              }
+        <div className="projects__filters" role="group" aria-label="Filter projects by category">
+          {categories.map((category) => (
+            <button
+              key={category}
+              type="button"
+              className={`projects__filter${activeFilter === category ? ' is-active' : ''}`}
+              onClick={() => setActiveFilter(category)}
+              aria-pressed={activeFilter === category}
             >
-              {category.name}
-            </Button>
+              {category === 'all' ? 'All' : category}
+            </button>
           ))}
         </div>
 
-        {/* Projects Grid */}
-        <Row xs={1} md={2} lg={3} className="g-4 g-md-5">
+        <div className="projects__grid">
           {filteredProjects.map((project) => (
-            <Col key={project.id}>
-              <Card
-                className="h-100 project-card"
-                style={{
-                  backgroundColor: 'var(--card)',
-                  borderColor: 'var(--border)',
-                  borderRadius: 'var(--radius)',
-                  overflow: 'hidden',
-                }}
-              >
-                {/* Project Image */}
-                <div className="project-image-wrapper">
+            <article key={project.id} className="projects__card">
+              <div className="projects__media">
+                {project.image ? (
                   <OptimizedImage
                     src={project.image}
                     alt={project.title}
-                    className="project-image"
-                    style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }}
+                    className="projects__image"
+                    width="1024"
+                    height="1024"
                   />
-                  <div className="image-overlay"></div>
-                </div>
+                ) : (
+                  <div className="projects__media-placeholder" aria-hidden="true">
+                    <Layers3 size={38} strokeWidth={1.4} />
+                    <span>{project.organization || project.category || 'Project'}</span>
+                  </div>
+                )}
+              </div>
 
-                <Card.Body className="p-4 d-flex flex-column">
-                  {/* Title */}
-                  <Card.Title className="fs-5 fw-bold mb-3 project-title" style={{ color: 'var(--foreground)' }}>
-                    {project.title}
-                  </Card.Title>
+              <div className="projects__content">
+                <p className="projects__category">{project.organization || project.category}</p>
+                <h3>{project.title}</h3>
+                <p className="projects__description">{project.description}</p>
 
-                  {/* Description */}
-                  <Card.Text className="small mb-4 flex-grow-1" style={{ color: 'var(--muted-foreground)', lineHeight: '1.6' }}>
-                    {project.description}
-                  </Card.Text>
-
-                  {/* Technologies */}
-                  <div className="d-flex flex-wrap gap-2 mb-4">
-                    {project.technologies.slice(0, 3).map((tech, index) => (
-                      <Badge
-                        key={index}
-                        bg=""
-                        className="tech-badge"
-                        style={{
-                          backgroundColor: 'var(--secondary)',
-                          color: 'var(--secondary-foreground)',
-                          fontSize: '0.75rem',
-                          fontWeight: '500',
-                          padding: '0.25rem 0.75rem',
-                        }}
+                {((project.technologies?.length ?? 0) > 0 || project.githubUrl) && (
+                  <div className="projects__bottom">
+                    {(project.technologies?.length ?? 0) > 0 && (
+                      <div className="projects__technologies" aria-label="Technologies used">
+                        {project.technologies.map((technology) => <span key={technology}>{technology}</span>)}
+                      </div>
+                    )}
+                    {project.githubUrl && (
+                      <a
+                        className="projects__link"
+                        href={project.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`View ${project.title} on GitHub`}
                       >
-                        {tech}
-                      </Badge>
-                    ))}
-                    {project.technologies.length > 3 && (
-                      <Badge
-                        bg=""
-                        style={{
-                          backgroundColor: 'var(--secondary)',
-                          color: 'var(--secondary-foreground)',
-                          fontSize: '0.75rem',
-                          fontWeight: '500',
-                        }}
-                      >
-                        +{project.technologies.length - 3}
-                      </Badge>
+                        <Github size={17} aria-hidden="true" />
+                        View on GitHub
+                        <ArrowUpRight size={16} aria-hidden="true" />
+                      </a>
                     )}
                   </div>
-
-                  {/* GitHub Button */}
-                  <Button
-                    variant="outline-primary"
-                    className="w-100 github-btn"
-                    href={project.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{
-                      borderWidth: '2px',
-                      borderColor: 'var(--border)',
-                      backgroundColor: 'transparent',
-                      color: 'var(--foreground)',
-                    }}
-                  >
-                    <FaGithub className="me-2" size={16} />
-                    View on GitHub
-                    <BiLinkExternal className="ms-2 external-link-icon" size={16} style={{ opacity: 0 }} />
-                  </Button>
-                </Card.Body>
-              </Card>
-            </Col>
+                )}
+              </div>
+            </article>
           ))}
-        </Row>
+        </div>
 
-        {/* Empty State */}
         {filteredProjects.length === 0 && (
-          <div className="text-center py-5">
-            <p className="fs-5" style={{ color: 'var(--muted-foreground)' }}>
-              No projects found for this category.
-            </p>
-          </div>
+          <p className="projects__empty">No projects found for this category.</p>
         )}
-      </Container>
-
-      <style>{`
-        .filter-btn {
-          transition: all 0.3s ease;
-        }
-        
-        .filter-btn:hover {
-          transform: translateY(-2px);
-        }
-
-        .project-card {
-          transition: all 0.3s ease;
-          border: 1px solid var(--border);
-        }
-
-        .project-card:hover {
-          box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-          border-color: rgba(var(--primary-rgb), 0.5);
-        }
-
-        .project-image-wrapper {
-          position: relative;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          width: 100%;
-          height: 192px;
-          overflow: hidden;
-          background-color: rgba(var(--secondary-rgb), 0.3);
-        }
-
-        .project-image-wrapper picture {
-          display: block;
-          width: 100%;
-          height: 100%;
-        }
-
-        .project-image {
-          display: block;
-          transition: transform 0.5s ease;
-        }
-
-        .project-card:hover .project-image {
-          transform: scale(1.1);
-        }
-
-        .image-overlay {
-          position: absolute;
-          inset: 0;
-          background: linear-gradient(to top, rgba(var(--background-rgb), 0.8), transparent);
-          opacity: 0;
-          transition: opacity 0.3s ease;
-        }
-
-        .project-card:hover .image-overlay {
-          opacity: 1;
-        }
-
-        .project-title {
-          transition: color 0.3s ease;
-        }
-
-        .project-card:hover .project-title {
-          color: var(--primary);
-        }
-
-        .tech-badge {
-          transition: all 0.3s ease;
-        }
-
-        .tech-badge:hover {
-          background-color: rgba(var(--accent-rgb), 0.2) !important;
-          color: var(--accent) !important;
-        }
-
-        .github-btn {
-          transition: all 0.3s ease;
-          position: relative;
-        }
-
-        .github-btn:hover {
-          background-color: var(--primary) !important;
-          color: var(--primary-foreground) !important;
-          border-color: var(--primary) !important;
-        }
-
-        .github-btn:hover .external-link-icon {
-          opacity: 1 !important;
-        }
-
-        @media (max-width: 768px) {
-          .project-image-wrapper {
-            height: 200px;
-          }
-        }
-      `}</style>
+      </div>
     </section>
   );
 }
